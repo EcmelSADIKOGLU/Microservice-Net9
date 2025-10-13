@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservice_Net9_.Shared.Extensions
 {
@@ -8,6 +10,10 @@ namespace Microservice_Net9_.Shared.Extensions
         {
             services.AddHttpContextAccessor();
             services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining(assembly));
+
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining(assembly);
+
 
             return services;
         }

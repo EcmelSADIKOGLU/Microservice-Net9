@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddOptionsExt();
 builder.Services.AddRepositoryExt();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 
@@ -25,7 +26,9 @@ app.AddCategoryGroupEndpointExt();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    //app.MapOpenApi();
 }
 
 

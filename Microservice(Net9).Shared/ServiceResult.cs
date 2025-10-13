@@ -128,7 +128,7 @@ namespace Microservice_Net9_.Shared
     public class ServiceResult<T> : ServiceResult
     {
         public T? Data { get; set; } //if it is not success
-        public string? UrlAsCreated { get; set; }
+        [JsonIgnore]  public string? UrlAsCreated { get; set; }
 
         //200
         public static ServiceResult<T> SuccessAsOk(T data)

@@ -10,7 +10,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
     {
         public async Task<ServiceResult<CreateCategoryResponse>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            var existCategory = await context.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken: cancellationToken);
+             var existCategory = await context.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken: cancellationToken);
 
             if (existCategory)
             {
@@ -26,7 +26,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
                 await context.Categories.AddAsync(category, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
 
-                return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), "<empty >");
+                return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), "<empty>");
 
             }
         }

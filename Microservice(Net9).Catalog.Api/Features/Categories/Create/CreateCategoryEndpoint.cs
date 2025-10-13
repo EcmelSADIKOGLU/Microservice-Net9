@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microservice_Net9_.Shared.Extensions;
+using Microservice_Net9_.Shared.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
@@ -14,7 +15,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            });
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;
         }
