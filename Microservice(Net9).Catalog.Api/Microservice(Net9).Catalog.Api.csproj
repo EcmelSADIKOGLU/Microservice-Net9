@@ -16,4 +16,8 @@
     <PackageReference Include="NewId" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice(Net9).Shared\Microservice(Net9).Shared.csproj" />
+  </ItemGroup>
+
 </Project>

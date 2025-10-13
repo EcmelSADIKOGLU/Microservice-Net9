@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Refit;
+﻿using Refit;
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 namespace Microservice_Net9_.Shared
 {
@@ -10,7 +10,7 @@ namespace Microservice_Net9_.Shared
     {
         [JsonIgnore] public HttpStatusCode StatusCode { get; set; }
 
-        public Microsoft.AspNetCore.Mvc.ProblemDetails? Fail { get; set; } //Başarılıysa null
+        public ProblemDetails? Fail { get; set; } //Başarılıysa null
 
 
         //lambda ile kullanırsan sadece get'i olan method'lar olur
@@ -31,7 +31,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult
             {
                 StatusCode = HttpStatusCode.NotFound,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = "Not Found",
                     Detail = "The request resource was not found",
@@ -42,7 +42,7 @@ namespace Microservice_Net9_.Shared
 
         }
 
-        public static ServiceResult Error(Microsoft.AspNetCore.Mvc.ProblemDetails problemDetails, HttpStatusCode statusCode)
+        public static ServiceResult Error(ProblemDetails problemDetails, HttpStatusCode statusCode)
         {
             return new ServiceResult()
             {
@@ -56,7 +56,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult()
             {
                 StatusCode = statusCode,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = title,
                     Detail = detail,
@@ -70,7 +70,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult()
             {
                 StatusCode = statusCode,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = title,
                     Status = statusCode.GetHashCode() //int karşılığı
@@ -83,7 +83,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult()
             {
                 StatusCode = HttpStatusCode.BadRequest,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = "Validation errors occured.",
                     Detail = "Please check the errors property for more details",
@@ -99,7 +99,7 @@ namespace Microservice_Net9_.Shared
             {
                 return new ServiceResult()
                 {
-                    Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                    Fail = new ProblemDetails()
                     {
                         Title = exception.Message,
                     },
@@ -108,7 +108,7 @@ namespace Microservice_Net9_.Shared
             }
             else
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(exception.Content, new JsonSerializerOptions()
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(exception.Content, new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true,
                 });
@@ -151,10 +151,10 @@ namespace Microservice_Net9_.Shared
             };
         }
 
-        public new static ServiceResult<T> Error(Microsoft.AspNetCore.Mvc.ProblemDetails problemDetails, HttpStatusCode statusCode)
+        public new static ServiceResult<T> Error(ProblemDetails problemDetails, HttpStatusCode statusCode)
         {
             return new ServiceResult<T>()
-{
+            {
                 StatusCode = statusCode,
                 Fail = problemDetails
             };
@@ -165,7 +165,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult<T>()
             {
                 StatusCode = statusCode,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = title,
                     Detail = detail,
@@ -179,7 +179,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult<T>()
             {
                 StatusCode = statusCode,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = title,
                     Status = statusCode.GetHashCode() //int karşılığı
@@ -192,7 +192,7 @@ namespace Microservice_Net9_.Shared
             return new ServiceResult<T>()
             {
                 StatusCode = HttpStatusCode.BadRequest,
-                Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                Fail = new ProblemDetails()
                 {
                     Title = "Validation errors occured.",
                     Detail = "Please check the errors property for more details",
@@ -208,7 +208,7 @@ namespace Microservice_Net9_.Shared
             {
                 return new ServiceResult<T>()
                 {
-                    Fail = new Microsoft.AspNetCore.Mvc.ProblemDetails()
+                    Fail = new ProblemDetails()
                     {
                         Title = exception.Message,
                     },
@@ -217,7 +217,7 @@ namespace Microservice_Net9_.Shared
             }
             else
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(exception.Content, new JsonSerializerOptions()
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(exception.Content, new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true,
                 });
