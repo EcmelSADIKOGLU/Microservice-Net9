@@ -1,9 +1,9 @@
-using MediatR;
+using Microservice_Net9_.Catalog.Api;
 using Microservice_Net9_.Catalog.Api.Features.Categories;
-using Microservice_Net9_.Catalog.Api.Features.Categories.Create;
 using Microservice_Net9_.Catalog.Api.Options;
 using Microservice_Net9_.Catalog.Api.Repositories;
-using Microsoft.AspNetCore.Mvc;
+using Microservice_Net9_.Shared.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,7 +12,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddOptionsExt();
 builder.Services.AddRepositoryExt();
 
-
+builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 
 var app = builder.Build();
 
