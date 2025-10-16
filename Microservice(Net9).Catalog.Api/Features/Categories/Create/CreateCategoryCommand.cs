@@ -3,7 +3,7 @@ using Microservice_Net9_.Shared;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
 {
-    public record CreateCategoryCommand(string Name) : IRequest<ServiceResult<CreateCategoryResponse>>;  //primary constructor
+    public record CreateCategoryCommand(string Name) : IRequestByServiceResult<CreateCategoryResponse>;  //primary constructor
 
 
 

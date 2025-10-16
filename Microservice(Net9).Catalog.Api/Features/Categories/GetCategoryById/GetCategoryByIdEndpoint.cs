@@ -11,7 +11,7 @@ using Microservice_Net9_.Shared.Filters;
 namespace Microservice_Net9_.Catalog.Api.Features.Categories.GetCategoryById
 {
 
-    public record GetCategoryByIdQuery(Guid id) : IRequest<ServiceResult<CategoryDto>>;
+    public record GetCategoryByIdQuery(Guid id) : IRequestByServiceResult<CategoryDto>;
     
     public class GetCategoryByIdHandler(AppDbContext context, IMapper mapper) : IRequestHandler<GetCategoryByIdQuery, ServiceResult<CategoryDto>>
     {

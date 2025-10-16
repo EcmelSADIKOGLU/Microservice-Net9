@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Microservice_Net9_.Catalog.Api.Features.Categories.GetAll
 {
 
-    public record GetAllCategoryQuery : IRequest<ServiceResult<GetAllCategoryResponse>>;
+    public record GetAllCategoryQuery : IRequestByServiceResult<GetAllCategoryResponse>;
     public record GetAllCategoryResponse(List<CategoryDto> Categories);
     public class GetAllCategoryHandler(AppDbContext context, IMapper mapper) : IRequestHandler<GetAllCategoryQuery, ServiceResult<GetAllCategoryResponse>>
     {
