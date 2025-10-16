@@ -1,10 +1,5 @@
-﻿using AutoMapper;
-using MediatR;
-using Microservice_Net9_.Catalog.Api.Features.Categories.Dtos;
+﻿using Microservice_Net9_.Catalog.Api.Features.Categories.Dtos;
 using Microservice_Net9_.Catalog.Api.Repositories;
-using Microservice_Net9_.Shared;
-using Microservice_Net9_.Shared.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 
 

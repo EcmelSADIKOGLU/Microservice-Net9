@@ -1,8 +1,6 @@
 ﻿using Microservice_Net9_.Catalog.Api.Features.Courses;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
-using System.Reflection.Emit;
 
 namespace Microservice_Net9_.Catalog.Api.Repositories
 {
