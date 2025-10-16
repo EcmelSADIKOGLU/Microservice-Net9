@@ -1,5 +1,6 @@
 ﻿using Microservice_Net9_.Catalog.Api.Features.Categories.Create;
 using Microservice_Net9_.Catalog.Api.Features.Categories.GetAll;
+using Microservice_Net9_.Catalog.Api.Features.Categories.GetCategoryById;
 using Microservice_Net9_.Shared.Filters;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Categories
@@ -10,7 +11,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories
         {
             app.MapGroup("api/categories")
                 .CreateCategoryGroupItem()
-                .GetAllCategoryGroupItem();
+                .GetAllCategoryGroupItem()
+                .GetCategoryByIdGroupItem();
 
         }
     }

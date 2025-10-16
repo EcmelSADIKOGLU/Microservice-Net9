@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microservice_Net9_.Catalog.Api.Features.Categories.Dtos;
 using Microservice_Net9_.Catalog.Api.Repositories;
 using Microservice_Net9_.Shared;
@@ -12,13 +13,12 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.GetAll
 
     public record GetAllCategoryQuery : IRequest<ServiceResult<GetAllCategoryResponse>>;
     public record GetAllCategoryResponse(List<CategoryDto> Categories);
-    public class GetAllCategoryHandler(AppDbContext context) : IRequestHandler<GetAllCategoryQuery, ServiceResult<GetAllCategoryResponse>>
+    public class GetAllCategoryHandler(AppDbContext context, IMapper mapper) : IRequestHandler<GetAllCategoryQuery, ServiceResult<GetAllCategoryResponse>>
     {
         public async Task<ServiceResult<GetAllCategoryResponse>> Handle(GetAllCategoryQuery request, CancellationToken cancellationToken)
         {
             var data = await context.Categories.ToListAsync(cancellationToken);
-            var categories = data.Select(x => new CategoryDto(x.Id, x.Name)).ToList();
-            var response = new GetAllCategoryResponse(categories);
+            var response = new GetAllCategoryResponse(mapper.Map<List<CategoryDto>>(data)); 
             return ServiceResult<GetAllCategoryResponse>.SuccessAsOk(response);
 
         }

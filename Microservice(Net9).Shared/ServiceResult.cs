@@ -230,6 +230,22 @@ namespace Microservice_Net9_.Shared
                 };
             }
         }
+
+        public new static ServiceResult<T> ErrorAsNotFound()
+        {
+            return new ServiceResult<T>
+            {
+                StatusCode = HttpStatusCode.NotFound,
+                Fail = new ProblemDetails()
+                {
+                    Title = "Not Found",
+                    Detail = "The request resource was not found",
+                    Status = HttpStatusCode.NotFound.GetHashCode()
+                }
+
+            };
+
+        }
     }
 
 }

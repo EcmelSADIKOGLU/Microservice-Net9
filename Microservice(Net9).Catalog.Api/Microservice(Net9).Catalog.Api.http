@@ -1,6 +1,19 @@
-@Microservice_Net9_.Catalog.Api_HostAddress = http://localhost:5204
+@baseAddress = http://localhost:5204
+@exampleCategoryId = 08de0c9e-b75a-5b78-0015-5d34e4fb0000
 
-GET {{Microservice_Net9_.Catalog.Api_HostAddress}}/categories/
+GET {{baseAddress}}/api/categories/
 Accept: application/json
 
+###
+
+Post {{baseAddress}}/api/categories/
+Accept: application/json
+Content-Type: application/json
+{
+    "name": "Category Deneme"
+}
+###
+
+GET {{baseAddress}}/api/categories/{{exampleCategoryId}}
+Accept: application/json
 ###
