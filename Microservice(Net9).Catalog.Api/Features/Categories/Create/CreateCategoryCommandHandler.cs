@@ -22,7 +22,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
                 await context.Categories.AddAsync(category, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
 
-                return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), "<empty>");
+                return ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), $"/api/categories/{category.Id}");
 
             }
         }

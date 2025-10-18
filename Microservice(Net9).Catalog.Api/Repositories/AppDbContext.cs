@@ -24,8 +24,8 @@ namespace Microservice_Net9_.Catalog.Api.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Tablo     /Satır   /Sütün
-            // Collection/Document/Field
+            // Tablo      / Satır    / Sütün
+            // Collection / Document / Field
 
             //Bir dizin veriyoruz. O dizindeki ilgili kütüphanyi import etmiş bütün configurasyonları kullanır
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); 

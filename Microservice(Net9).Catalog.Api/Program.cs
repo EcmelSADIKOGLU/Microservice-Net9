@@ -1,8 +1,8 @@
 using Microservice_Net9_.Catalog.Api;
 using Microservice_Net9_.Catalog.Api.Features.Categories;
+using Microservice_Net9_.Catalog.Api.Features.Courses;
 using Microservice_Net9_.Catalog.Api.Options;
 using Microservice_Net9_.Catalog.Api.Repositories;
-using Microservice_Net9_.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt();
-
-
+app.AddCourseGroupEndpointExt();
 
 
 

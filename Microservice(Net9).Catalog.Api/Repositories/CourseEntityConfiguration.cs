@@ -15,7 +15,7 @@ namespace Microservice_Net9_.Catalog.Api.Repositories
             builder.Property(x => x.Description).HasElementName("description").HasMaxLength(1000);
             builder.Property(x => x.CreateTime).HasElementName("createTime");
             builder.Property(x => x.UserId).HasElementName("userId");
-            builder.Property(x => x.Picture).HasElementName("picture");
+            builder.Property(x => x.ImageUrl).HasElementName("imageUrl").HasMaxLength(500);
             builder.Property(x => x.CategoryId).HasElementName("categoryId");
             builder.Ignore(x => x.Category);
 

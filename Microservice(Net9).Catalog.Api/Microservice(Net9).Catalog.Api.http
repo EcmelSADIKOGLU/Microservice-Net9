@@ -1,5 +1,9 @@
-@baseAddress = http://localhost:5204
+﻿@baseAddress = http://localhost:5204
 @exampleCategoryId = 08de0c9e-b75a-5b78-0015-5d34e4fb0000
+@exampleCourseId = 08de0d7c-bb06-f065-e02b-e9ae02a00000
+
+
+// Categories
 
 GET {{baseAddress}}/api/categories/
 Accept: application/json
@@ -16,4 +20,45 @@ Content-Type: application/json
 
 GET {{baseAddress}}/api/categories/{{exampleCategoryId}}
 Accept: application/json
+
 ###
+
+
+//Courses
+
+
+GET {{baseAddress}}/api/courses/
+Accept: application/json
+
+###
+
+Post {{baseAddress}}/api/courses/
+Accept: application/json
+Content-Type: application/json
+{
+    "name": "Course Deneme",
+    "description": "This is a test",
+    "imageUrl": "https://picsum.photos/200",
+    "price": 50.3,
+    "categoryId": "{{exampleCategoryId}}"
+}
+###
+
+
+GET {{baseAddress}}/api/courses/{{exampleCourseId}}
+Accept: application/json
+
+###
+PUT {{baseAddress}}/api/courses/update
+Accept: application/json
+Content-Type: application/json
+{
+    "id": "{{exampleCourseId}}",
+    "name": "Course Deneme Change",
+    "description": "This is a test",
+    "imageUrl": "https://picsum.photos/200",
+    "price": 50.3,
+    "categoryId": "{{exampleCategoryId}}"
+}
+###
+

@@ -12,7 +12,10 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.Create
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
 
-            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            })
+                .WithName("CreateCategory")
+                .Produces<Guid>(StatusCodes.Status201Created)
+                .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;
         }
