@@ -1,6 +1,6 @@
 ﻿@baseAddress = http://localhost:5204
 @exampleCategoryId = 08de0c9e-b75a-5b78-0015-5d34e4fb0000
-@exampleCourseId = 08de0d7c-bb06-f065-e02b-e9ae02a00000
+@exampleCourseId = 08de0e33-3558-d503-0015-5d362e040000
 
 
 // Categories
@@ -60,5 +60,10 @@ Content-Type: application/json
     "price": 50.3,
     "categoryId": "{{exampleCategoryId}}"
 }
+###
+
+DELETE {{baseAddress}}/api/courses/{{exampleCourseId}}
+Accept: application/json
+
 ###
 

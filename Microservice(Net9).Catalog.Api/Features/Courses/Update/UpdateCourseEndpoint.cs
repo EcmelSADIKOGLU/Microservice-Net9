@@ -4,7 +4,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Update
 {
     public static class UpdateCourseEndpoint
     {
-        public static IEndpointRouteBuilder MapUpdateCourseEndpoint(this IEndpointRouteBuilder group)
+        public static IEndpointRouteBuilder UpdateCourseGroupItem(this IEndpointRouteBuilder group)
         {
             group.MapPut("/update", async (UpdateCourseCommand command, IMediator mediator) =>
             {

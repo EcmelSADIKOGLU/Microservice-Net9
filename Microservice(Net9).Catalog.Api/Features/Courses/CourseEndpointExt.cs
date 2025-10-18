@@ -2,6 +2,7 @@
 using Microservice_Net9_.Catalog.Api.Features.Courses.GetAll;
 using Microservice_Net9_.Catalog.Api.Features.Courses.GetById;
 using Microservice_Net9_.Catalog.Api.Features.Courses.Update;
+using Microservice_Net9_.Catalog.Api.Features.Courses.Delete;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Courses
 {
@@ -13,7 +14,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses
                 .CreateCourseGroupItem()
                 .GetAllCoursesGroupItem()
                 .GetCourseByIdGroupItem()
-                .MapUpdateCourseEndpoint();
+                .UpdateCourseGroupItem()
+                .DeleteCourseGroupItem();
 
         }
     }
