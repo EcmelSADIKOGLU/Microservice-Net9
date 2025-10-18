@@ -2,7 +2,7 @@
 {
     public static class DeleteCourseEndpoint
     {
-        public static IEndpointRouteBuilder DeleteCourseGroupItem(this IEndpointRouteBuilder group)
+        public static RouteGroupBuilder DeleteCourseGroupItem(this RouteGroupBuilder group)
         {
             group.MapDelete("/{id:guid}",
                 async (IMediator mediator, Guid id) =>

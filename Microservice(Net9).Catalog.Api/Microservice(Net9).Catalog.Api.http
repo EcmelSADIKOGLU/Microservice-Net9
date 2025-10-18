@@ -1,6 +1,7 @@
 ﻿@baseAddress = http://localhost:5204
-@exampleCategoryId = 08de0c9e-b75a-5b78-0015-5d34e4fb0000
-@exampleCourseId = 08de0e33-3558-d503-0015-5d362e040000
+@exampleCategoryId = 08de0e39-28d9-a5eb-0015-5d362e040000
+@exampleCourseId = 08de0e39-28f4-8518-0015-5d362e040000
+@exampleUserIdForCourse = 08de0e39-28f4-851a-0015-5d362e040000
 
 
 // Categories
@@ -66,4 +67,10 @@ DELETE {{baseAddress}}/api/courses/{{exampleCourseId}}
 Accept: application/json
 
 ###
+
+DELETE {{baseAddress}}/api/courses/GetAllCoursesByUserId/{{exampleUserIdForCourse}}
+Accept: application/json
+
+###
+
 
