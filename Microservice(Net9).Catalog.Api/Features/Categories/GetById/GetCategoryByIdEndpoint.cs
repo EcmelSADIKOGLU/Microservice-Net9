@@ -29,6 +29,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.GetCategoryById
             group.MapGet("/{id:guid}",
                 async (IMediator mediator, Guid id) =>
                 (await mediator.Send(new GetCategoryByIdQuery(id))).ToGenericResult())
+                .MapToApiVersion(1, 0)
                 .Produces<CategoryDto>(StatusCodes.Status200OK)
                 .WithName("GetCategoryById");
 

@@ -11,6 +11,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Update
                 var result = await mediator.Send(command);
                 return result.ToGenericResult();
             })
+                .MapToApiVersion(1, 0)
                 .AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>()
                 .WithName("UpdateCourse")
                 .Produces<ServiceResult>(StatusCodes.Status204NoContent)

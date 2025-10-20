@@ -6,12 +6,12 @@
 
 // Categories
 
-GET {{baseAddress}}/api/categories/
+GET {{baseAddress}}/api/v1/categories/
 Accept: application/json
 
 ###
 
-Post {{baseAddress}}/api/categories/
+Post {{baseAddress}}/api/v1/categories/
 Accept: application/json
 Content-Type: application/json
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 ###
 
-GET {{baseAddress}}/api/categories/{{exampleCategoryId}}
+GET {{baseAddress}}/api/v1/categories/{{exampleCategoryId}}
 Accept: application/json
 
 ###
@@ -28,12 +28,12 @@ Accept: application/json
 //Courses
 
 
-GET {{baseAddress}}/api/courses/
+GET {{baseAddress}}/api/v1/courses/
 Accept: application/json
 
 ###
 
-Post {{baseAddress}}/api/courses/
+Post {{baseAddress}}/api/v1/courses/
 Accept: application/json
 Content-Type: application/json
 {
@@ -46,11 +46,11 @@ Content-Type: application/json
 ###
 
 
-GET {{baseAddress}}/api/courses/{{exampleCourseId}}
+GET {{baseAddress}}/api/v1/courses/{{exampleCourseId}}
 Accept: application/json
 
 ###
-PUT {{baseAddress}}/api/courses/update
+PUT {{baseAddress}}/api/v1/courses/update
 Accept: application/json
 Content-Type: application/json
 {
@@ -63,12 +63,12 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{baseAddress}}/api/courses/{{exampleCourseId}}
+DELETE {{baseAddress}}/api/v1/courses/{{exampleCourseId}}
 Accept: application/json
 
 ###
 
-DELETE {{baseAddress}}/api/courses/GetAllCoursesByUserId/{{exampleUserIdForCourse}}
+DELETE {{baseAddress}}/api/v1/courses/GetAllCoursesByUserId/{{exampleUserIdForCourse}}
 Accept: application/json
 
 ###

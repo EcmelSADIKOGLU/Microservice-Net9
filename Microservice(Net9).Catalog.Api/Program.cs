@@ -14,6 +14,7 @@ builder.Services.AddRepositoryExt();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
+builder.Services.AddVersioningExt();
 
 var app = builder.Build();
 
@@ -23,8 +24,9 @@ app.AppSeedDataExt().ContinueWith(x =>
 
 });
 
-app.AddCategoryGroupEndpointExt();
-app.AddCourseGroupEndpointExt();
+
+app.AddCategoryGroupEndpointExt(app.AddVersionSetExt());
+app.AddCourseGroupEndpointExt(app.AddVersionSetExt());
 
 
 

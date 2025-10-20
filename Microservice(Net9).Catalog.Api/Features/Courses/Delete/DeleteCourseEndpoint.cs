@@ -7,6 +7,7 @@
             group.MapDelete("/{id:guid}",
                 async (IMediator mediator, Guid id) =>
                 (await mediator.Send(new DeleteCourseCommand(id))).ToGenericResult())
+                .MapToApiVersion(1, 0)
                 .Produces(StatusCodes.Status204NoContent)
                 .WithName("DeleteCourse");
 

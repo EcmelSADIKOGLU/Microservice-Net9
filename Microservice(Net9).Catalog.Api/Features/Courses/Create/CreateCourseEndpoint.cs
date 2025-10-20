@@ -13,6 +13,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
                 return result.ToGenericResult();
 
             })
+                .MapToApiVersion(1, 0)
                 .WithName("CreateCourse")
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();

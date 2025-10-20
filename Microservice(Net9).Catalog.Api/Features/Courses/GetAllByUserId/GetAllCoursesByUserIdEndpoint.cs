@@ -13,8 +13,9 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.GetAllByUserId
                 var result = await mediator.Send(new GetAllCoursesByUserIdQuery(id));
                 return result.ToGenericResult();
             })
-            .Produces<GetAllCoursesResponse>(StatusCodes.Status200OK)
-            .WithName("GetAllCoursesByUserId");
+                .MapToApiVersion(1, 0)
+                .Produces<GetAllCoursesResponse>(StatusCodes.Status200OK)
+                .WithName("GetAllCoursesByUserId");
 
 
             return group;
