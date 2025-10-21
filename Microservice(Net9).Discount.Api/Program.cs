@@ -1,4 +1,6 @@
 using Microservice_Net9_.Discount.Api;
+using Microservice_Net9_.Discount.Api.Options;
+using Microservice_Net9_.Discount.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddVersioningExt();
 
+builder.Services.AddOptionsExt();
+builder.Services.AddRepositoryExt();
 
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 
