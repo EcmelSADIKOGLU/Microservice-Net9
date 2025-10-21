@@ -8,13 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
-builder.Services.AddOptionsExt();
-builder.Services.AddRepositoryExt();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 builder.Services.AddVersioningExt();
+
+builder.Services.AddOptionsExt();
+builder.Services.AddRepositoryExt();
+
+
+builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
+
 
 var app = builder.Build();
 

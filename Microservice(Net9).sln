@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{E357AE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Shared", "Microservice(Net9).Shared\Microservice(Net9).Shared.csproj", "{0DB16986-9685-4664-A24D-3F0BAE810C88}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "discount", "discount", "{3BD02A5B-B076-44CC-A419-79A20B4705DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Discount.Api", "Microservice(Net9).Discount.Api\Microservice(Net9).Discount.Api.csproj", "{0A9AF540-31E2-4CB8-9188-7745944B1898}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{0DB16986-9685-4664-A24D-3F0BAE810C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DB16986-9685-4664-A24D-3F0BAE810C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DB16986-9685-4664-A24D-3F0BAE810C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9AF540-31E2-4CB8-9188-7745944B1898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9AF540-31E2-4CB8-9188-7745944B1898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9AF540-31E2-4CB8-9188-7745944B1898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9AF540-31E2-4CB8-9188-7745944B1898}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,8 @@ Global
 		{16F7DE00-F903-4BB8-B1CF-A054044C5FAB} = {AC311EC7-833A-46D7-9159-05CDAE242848}
 		{E357AE9D-C65A-4ECC-A4AF-CB5EF4C14011} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{0DB16986-9685-4664-A24D-3F0BAE810C88} = {E357AE9D-C65A-4ECC-A4AF-CB5EF4C14011}
+		{3BD02A5B-B076-44CC-A419-79A20B4705DD} = {41F9D4ED-1C2C-42E6-AF41-F2FBBFD402EE}
+		{0A9AF540-31E2-4CB8-9188-7745944B1898} = {3BD02A5B-B076-44CC-A419-79A20B4705DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F05BD99A-8D4C-487C-A28D-BAB3B9E1ED9F}
