@@ -1,4 +1,5 @@
 using Microservice_Net9_.Discount.Api;
+using Microservice_Net9_.Discount.Api.Features.Discounts;
 using Microservice_Net9_.Discount.Api.Options;
 using Microservice_Net9_.Discount.Api.Repositories;
 
@@ -18,6 +19,8 @@ builder.Services.AddRepositoryExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 
 var app = builder.Build();
+
+app.AddDiscountEndpointGroupExt(app.AddVersionSetExt());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

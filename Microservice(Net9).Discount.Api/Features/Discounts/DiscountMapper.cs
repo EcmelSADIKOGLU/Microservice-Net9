@@ -7,6 +7,7 @@ namespace Microservice_Net9_.Discount.Api.Features.Discounts
         public DiscountMapper()
         {
             CreateMap<CreateDiscountCommand, Discount>();
+            CreateMap<Discount, DiscountDto>();
         }
     }
 }

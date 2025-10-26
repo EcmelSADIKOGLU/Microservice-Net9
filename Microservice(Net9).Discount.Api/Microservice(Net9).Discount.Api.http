@@ -1,6 +1,17 @@
-@Microservice_Net9_.Discount.Api_HostAddress = http://localhost:5237
+@baseAddress = http://localhost:5237
+@code = Deneme1239
 
-GET {{Microservice_Net9_.Discount.Api_HostAddress}}/weatherforecast/
+Get {{baseAddress}}/api/v1/discounts/Deneme123sssda
 Accept: application/json
 
 ###
+
+Post {{baseAddress}}/api/v1/discounts/
+Accept: application/json
+Content-Type: application/json
+{
+  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+  "rate": 10,
+  "code": "Deneme1239",
+  "expireTime": "2026-10-21"
+}
