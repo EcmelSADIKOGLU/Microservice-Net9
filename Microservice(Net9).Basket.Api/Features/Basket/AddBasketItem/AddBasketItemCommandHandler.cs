@@ -3,20 +3,20 @@ using MediatR;
 using Microservice_Net9_.Basket.Api.Const;
 using Microservice_Net9_.Basket.Api.Dto;
 using Microservice_Net9_.Shared;
+using Microservice_Net9_.Shared.Services;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
 {
-    public class AddBasketItemCommandHandler(IDistributedCache distributedCache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketItemCommandHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
 
-            // basket:{userId}
-            Guid userId = Guid.NewGuid(); // TODO: Get userId from request
+            Guid userId = identityService.GetUserId;
 
-           
+
             var newBasketItem = new BasketItemDto(
                 CourseId: request.CourseId,
                 CourseName: request.CourseName,
