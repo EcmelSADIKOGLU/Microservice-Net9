@@ -15,3 +15,7 @@ Content-Type: application/json
 }
 ###
 
+DELETE {{baseAddress}}/api/v1/baskets/item/{{exampleCourseId}}
+Accept: application/json
+###
+

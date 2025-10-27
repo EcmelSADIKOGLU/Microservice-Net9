@@ -1,6 +1,8 @@
 ﻿using Asp.Versioning.Builder;
+using Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem;
+using Microservice_Net9_.Basket.Api.Features.Basket.DeleteBasketItem;
 
-namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
+namespace Microservice_Net9_.Basket.Api.Features.Basket
 {
     public static class BasketEndpointExt
     {
@@ -8,7 +10,8 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
         {
             app.MapGroup("api/v{version:apiVersion}/baskets").WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
-                .AddBasketItemGroupItem();
+                .AddBasketItemGroupItem()
+                .DeleteBasketItemGroupItem();
 
         }
     }

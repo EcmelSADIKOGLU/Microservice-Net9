@@ -1,6 +1,4 @@
-﻿using MediatR;
-using Microservice_Net9_.Shared.Extensions;
-using Microservice_Net9_.Shared.Filters;
+﻿using Microservice_Net9_.Shared.Filters;
 
 namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
 {

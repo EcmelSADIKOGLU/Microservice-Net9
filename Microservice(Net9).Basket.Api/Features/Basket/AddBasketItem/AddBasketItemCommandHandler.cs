@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
-using Microservice_Net9_.Basket.Api.Const;
+﻿using Microservice_Net9_.Basket.Api.Const;
 using Microservice_Net9_.Basket.Api.Dto;
-using Microservice_Net9_.Shared;
 using Microservice_Net9_.Shared.Services;
-using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem

@@ -1,6 +1,4 @@
-﻿using Microservice_Net9_.Shared;
-
-namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
+﻿namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
 {
     public record AddBasketItemCommand(
         Guid CourseId,

@@ -1,6 +1,5 @@
 using Microservice_Net9_.Basket.Api;
-using Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem;
-using Microservice_Net9_.Shared.Extensions;
+using Microservice_Net9_.Basket.Api.Features.Basket;
 
 var builder = WebApplication.CreateBuilder(args);
 
