@@ -9,6 +9,8 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket
         public BasketMapper()
         {
             CreateMap<AddBasketItemCommand, BasketItemDto>();
+            CreateMap<Data.Basket, BasketDto>();
+            CreateMap<Data.BasketItem, BasketItemDto>();
         }
     }
 }

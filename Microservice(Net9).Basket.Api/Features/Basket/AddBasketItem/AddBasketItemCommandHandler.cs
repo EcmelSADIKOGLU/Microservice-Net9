@@ -1,4 +1,5 @@
 ﻿using Microservice_Net9_.Basket.Api.Const;
+using Microservice_Net9_.Basket.Api.Data;
 using Microservice_Net9_.Basket.Api.Dto;
 using Microservice_Net9_.Shared.Services;
 using System.Text.Json;
@@ -13,7 +14,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
             Guid userId = identityService.GetUserId;
 
 
-            var newBasketItem = new BasketItemDto(
+            var newBasketItem = new BasketItem(
                 CourseId: request.CourseId,
                 CourseName: request.CourseName,
                 CoursePrice: request.CoursePrice,
@@ -28,18 +29,18 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
 
             var basketAsJson = await distributedCache.GetStringAsync(casheKey, cancellationToken);
 
-            BasketDto? currentBasket;
+            Data.Basket? currentBasket;
 
             if (string.IsNullOrEmpty(basketAsJson))
             {
                 //currentBasket = new BasketDto(userId, [newBasketItem]);
-                currentBasket = new BasketDto(userId, new List<BasketItemDto> { newBasketItem });
+                currentBasket = new Data.Basket(userId, new List<BasketItem> { newBasketItem });
 
                 await CreateCash(currentBasket, casheKey, cancellationToken);
                 return ServiceResult.SuccessAsNoContent();
 
             }
-            currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsJson);
+            currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
             var existingBasketItems = currentBasket!.BasketItems.FirstOrDefault(x => x.CourseId == newBasketItem.CourseId);
 
@@ -57,7 +58,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
 
         }
 
-        private async Task CreateCash(BasketDto basketDto, string casheKey, CancellationToken cancellationToken)
+        private async Task CreateCash(Data.Basket basketDto, string casheKey, CancellationToken cancellationToken)
         {
             var basketAsString = JsonSerializer.Serialize(basketDto);
             await distributedCache.SetStringAsync(casheKey, basketAsString, cancellationToken);

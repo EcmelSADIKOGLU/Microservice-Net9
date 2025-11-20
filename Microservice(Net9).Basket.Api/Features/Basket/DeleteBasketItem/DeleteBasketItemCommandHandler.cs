@@ -1,5 +1,4 @@
 ﻿using Microservice_Net9_.Basket.Api.Const;
-using Microservice_Net9_.Basket.Api.Dto;
 using Microservice_Net9_.Shared.Services;
 using System.Text.Json;
 
@@ -21,7 +20,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.DeleteBasketItem
                 return ServiceResult.Error("Basket could not found.", $"User {userId} does not have a basket", HttpStatusCode.NotFound);
             }
 
-            BasketDto currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsJson)!;
+            Data.Basket currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
 
             var hasCourse = currentBasket.BasketItems.FirstOrDefault(x => x.CourseId == request.CourseId);
 

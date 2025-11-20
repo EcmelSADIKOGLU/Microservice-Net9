@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning.Builder;
 using Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem;
+using Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon;
 using Microservice_Net9_.Basket.Api.Features.Basket.DeleteBasketItem;
 using Microservice_Net9_.Basket.Api.Features.Basket.GetBasket;
 
@@ -13,7 +14,8 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket
                 .WithApiVersionSet(apiVersionSet)
                 .AddBasketItemGroupItem()
                 .DeleteBasketItemGroupItem()
-                .GetBasketGroupItem();
+                .GetBasketGroupItem()
+                .ApplyDiscountCouponGroupItem();
 
         }
     }

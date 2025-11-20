@@ -1,18 +1,11 @@
-﻿namespace Microservice_Net9_.Basket.Api.Dto
-{
-    public record BasketDto
-    {
-        public Guid UserId { get; init; }
-        public List<BasketItemDto> BasketItems { get; init; } = new();
-        public decimal TotalPrice { get; init; }
+﻿using System.Text.Json.Serialization;
 
-        // Custom constructor
-        public BasketDto(Guid userId, List<BasketItemDto> basketItems)
-        {
-            UserId = userId;
-            BasketItems = basketItems;
-            TotalPrice = basketItems.Sum(item => item.CoursePrice);
-        }
+namespace Microservice_Net9_.Basket.Api.Dto
+{
+    public record BasketDto ()
+    {
+        [JsonIgnore]  public Guid UserId { get; init; }
+        public List<BasketItemDto> BasketItems { get; init; } = new();
     }
 
 
