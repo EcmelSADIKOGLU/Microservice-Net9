@@ -1,5 +1,7 @@
-using Microservice_Net9_.File.Api;
+﻿using Microservice_Net9_.File.Api;
+using Microservice_Net9_.File.Api.Features.File;
 using Microservice_Net9_.Shared.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,14 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddVersioningExt();
+builder.Services.AddVersioningExt();
 
 
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
 
-
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
 var app = builder.Build();
+
+app.UseStaticFiles(); //to access wwwroot files
+
+app.AddFileEndpointGroupExt(app.AddVersionSetExt());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

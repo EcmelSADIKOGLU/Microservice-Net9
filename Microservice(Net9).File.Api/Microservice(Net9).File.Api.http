@@ -1,6 +1,14 @@
-@Microservice_Net9_.File.Api_HostAddress = http://localhost:5031
+@baseAddress = http://localhost:5031
 
-GET {{Microservice_Net9_.File.Api_HostAddress}}/weatherforecast/
+Post {{baseAddress}}/api/v1/files/
 Accept: application/json
+Content-Type: multipart/form-data; boundary=----MyBoundary
+
+------MyBoundary
+Content-Disposition: form-data; name="file"; filename="hello.txt"
+Content-Type: text/plain
+
+Hello World
+------MyBoundary--
 
 ###
