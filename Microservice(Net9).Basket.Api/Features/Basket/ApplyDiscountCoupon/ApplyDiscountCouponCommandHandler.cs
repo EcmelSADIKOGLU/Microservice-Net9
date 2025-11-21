@@ -1,24 +1,17 @@
-﻿
-using Microservice_Net9_.Basket.Api.Const;
-using Microservice_Net9_.Basket.Api.Dto;
-using Microservice_Net9_.Shared.Services;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon
 {
-    public class ApplyDiscountCouponCommandHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
+    public class ApplyDiscountCouponCommandHandler(BasketService basketService) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(ApplyDiscountCouponCommand request, CancellationToken cancellationToken)
         {
 
-            Guid userId = identityService.GetUserId;
-
-            var casheKey = string.Format(BasketConst.BasketCacheKey, userId); //0 yazan yere userId gelecek
-            var basketAsJson = await distributedCache.GetStringAsync(casheKey, cancellationToken);
+            var basketAsJson = await basketService.GetBasketJsonFromCacheAsync(cancellationToken);
 
             if (string.IsNullOrEmpty(basketAsJson))
             {
-                return ServiceResult.Error("Basket could not found", $"There is no basket with {userId} userId.", HttpStatusCode.NotFound);
+                return ServiceResult.Error("Basket could not found", HttpStatusCode.NotFound);
             }
 
             Data.Basket currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
@@ -40,9 +33,8 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon
             } 
 
             currentBasket.ApplyNewDiscount(request.CouponCode, request.DiscountRate);
-
-            basketAsJson = JsonSerializer.Serialize(currentBasket);
-            await distributedCache.SetStringAsync(casheKey, basketAsJson, cancellationToken);
+                
+            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }

@@ -1,21 +1,17 @@
-﻿
-using Microservice_Net9_.Basket.Api.Const;
-using Microservice_Net9_.Shared.Services;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace Microservice_Net9_.Basket.Api.Features.Basket.ClearDiscountCoupon
 {
-    public class ClearDiscountCouponCommandHandler(IDistributedCache distributedCache, IIdentityService identityService) : IRequestHandler<ClearDiscountCouponCommand, ServiceResult>
+    public class ClearDiscountCouponCommandHandler(BasketService basketService) : IRequestHandler<ClearDiscountCouponCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(ClearDiscountCouponCommand request, CancellationToken cancellationToken)
         {
-            Guid userId = identityService.GetUserId;
-            var casheKey = string.Format(BasketConst.BasketCacheKey, userId); 
-            var basketAsJson = await distributedCache.GetStringAsync(casheKey, cancellationToken);
+
+            var basketAsJson = await basketService.GetBasketJsonFromCacheAsync(cancellationToken);
 
             if (string.IsNullOrEmpty(basketAsJson))
             {
-                return ServiceResult.Error("Basket could not found", $"There is no basket with {userId} userId.", HttpStatusCode.NotFound);
+                return ServiceResult.Error("Basket could not found", HttpStatusCode.NotFound);
             }
 
             Data.Basket currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
@@ -26,8 +22,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ClearDiscountCoupon
             }
 
             currentBasket.ClearDiscount();
-            basketAsJson = JsonSerializer.Serialize(currentBasket);
-            await distributedCache.SetStringAsync(casheKey, basketAsJson, cancellationToken);
+            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }

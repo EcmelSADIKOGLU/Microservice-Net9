@@ -1,6 +1,6 @@
 @baseAddress = http://localhost:5195
 @exampleUserId = 3fa85f64-5717-4562-b3fc-2c963f66afa6
-@exampleCourseId = 08de0e39-28f4-6c4b-0015-5d362e040000
+@exampleCourseId = 08de0e39-28f4-6c4b-0015-5d362e040002
 
 
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 {
   "courseId": "{{exampleCourseId}}",
   "courseName": "C# Fundamentals",
-  "coursePrice": 99.99,
+  "coursePrice": 80,
   "imageUrl": "https://example.com/images/csharp.jpg",
   "userId": "{{exampleUserId}}",
   "educatorFullName": "John Doe"
