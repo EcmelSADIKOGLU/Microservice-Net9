@@ -18,7 +18,6 @@ namespace Microservice_Net9_.File.Api.Features.File.Upload
                 .MapToApiVersion(1, 0)
                 .WithName("UploadFile")
                 .Produces<ServiceResult<UploadFileCommandResponse>>(StatusCodes.Status201Created)
-                .AddEndpointFilter<ValidationFilter<UploadFileCommand>>()
                 .DisableAntiforgery();
 
             return group;

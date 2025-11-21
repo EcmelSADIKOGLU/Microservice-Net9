@@ -12,3 +12,14 @@ Hello World
 ------MyBoundary--
 
 ###
+
+
+Delete {{baseAddress}}/api/v1/files/
+Accept: application/json
+Content-Type: application/json
+{
+  "fileName": "hello.txt"
+}
+
+###
+
