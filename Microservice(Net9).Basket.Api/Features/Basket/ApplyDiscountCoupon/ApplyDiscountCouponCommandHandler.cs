@@ -23,6 +23,11 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon
 
             Data.Basket currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
 
+            if (!currentBasket.BasketItems.Any())
+            {
+                return ServiceResult.Error("Basket item not found.", HttpStatusCode.NotFound);
+            }
+
             if (currentBasket.IsApplyDiscount)
             {
                 if (currentBasket.CouponCode != request.CouponCode)
@@ -32,7 +37,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon
                 }
 
                 currentBasket.ApplyExistingDiscount();
-            }
+            } 
 
             currentBasket.ApplyNewDiscount(request.CouponCode, request.DiscountRate);
 

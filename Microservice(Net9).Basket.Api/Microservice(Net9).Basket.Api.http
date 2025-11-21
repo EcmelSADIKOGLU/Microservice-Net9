@@ -34,6 +34,10 @@ DELETE {{baseAddress}}/api/v1/baskets/item/{{exampleCourseId}}
 Accept: application/json
 ###
 
+DELETE {{baseAddress}}/api/v1/baskets/clear-discount-coupon
+Accept: application/json
+###
+
 
 
 
