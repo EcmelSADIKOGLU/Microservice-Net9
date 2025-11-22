@@ -4,17 +4,16 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Microservice_Net9_.Discount.Api</RootNamespace>
+    <RootNamespace>Microservice_Net9_.Order.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
-    <PackageReference Include="MongoDB.EntityFrameworkCore" Version="9.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microservice(Net9).Shared\Microservice(Net9).Shared.csproj" />
+    <ProjectReference Include="..\Microservice(Net9).Order.Application\Microservice(Net9).Order.Application.csproj" />
+    <ProjectReference Include="..\Microservice(Net9).Order.Persistence\Microservice(Net9).Order.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
