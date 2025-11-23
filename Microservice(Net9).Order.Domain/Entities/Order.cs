@@ -9,8 +9,8 @@ namespace Microservice_Net9_.Order.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public Guid BuyerId { get; set; }
         public OrderStatus Status { get; set; }
-        public Guid AddressId { get; set; }
-        public float? DiscountPercent { get; set; }
+        public int AddressId { get; set; }
+        public float? DiscountRate { get; set; }
         public decimal TotalPrice { get; set; }
 
         public Guid? PaymentId { get; set; }
@@ -33,7 +33,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
             return orderCode.ToString();
         }
 
-        public static Order CreateUnpaidOrder(Guid buyerId, float? discountPercent, Guid addressId)
+        public static Order CreateUnpaidOrder(Guid buyerId, float? discountPercent, int addressId)
         {
             var order = new Order
             {
@@ -43,7 +43,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
                 CreatedDate = DateTime.UtcNow,
                 Status = OrderStatus.WaitingForPayment,
                 AddressId = addressId,
-                DiscountPercent = discountPercent,
+                DiscountRate = discountPercent,
 
             };
 
@@ -75,16 +75,16 @@ namespace Microservice_Net9_.Order.Domain.Entities
             {
                 throw new ArgumentOutOfRangeException(nameof(discountPercent), "Discount percent must be between 0 and 100.");
             }
-            this.DiscountPercent = discountPercent;
+            this.DiscountRate = discountPercent;
             CalculateTotalPrice();
         }
 
         private void CalculateTotalPrice()
         {
             TotalPrice = OrderItems.Sum(item => item.UnitPrice);
-            if (DiscountPercent.HasValue && DiscountPercent.Value > 0)
+            if (DiscountRate.HasValue && DiscountRate.Value > 0)
             {
-                TotalPrice -= (TotalPrice * (decimal)DiscountPercent!.Value) / 100;
+                TotalPrice -= (TotalPrice * (decimal)DiscountRate!.Value) / 100;
             }
 
 
