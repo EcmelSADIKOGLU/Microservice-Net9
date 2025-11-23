@@ -13,7 +13,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
         public float? DiscountPercent { get; set; }
         public decimal TotalPrice { get; set; }
 
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         public Address Address { get; set; } = default!;
 

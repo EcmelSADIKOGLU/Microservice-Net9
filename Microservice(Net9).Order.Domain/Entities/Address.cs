@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Microservice_Net9_.Order.Domain.Entities
+﻿namespace Microservice_Net9_.Order.Domain.Entities
 {
     public class Address : BaseEntity<int>
     {

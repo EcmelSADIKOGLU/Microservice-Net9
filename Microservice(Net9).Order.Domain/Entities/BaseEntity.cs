@@ -1,5 +1,4 @@
-﻿
-namespace Microservice_Net9_.Order.Domain.Entities
+﻿namespace Microservice_Net9_.Order.Domain.Entities
 {
     public class BaseEntity<TEntityId>
     {
