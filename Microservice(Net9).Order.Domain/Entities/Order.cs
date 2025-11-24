@@ -44,9 +44,21 @@ namespace Microservice_Net9_.Order.Domain.Entities
                 Status = OrderStatus.WaitingForPayment,
                 AddressId = addressId,
                 DiscountRate = discountPercent,
-
             };
+            return order;
+        }
 
+        public static Order CreateUnpaidOrder(Guid buyerId, float? discountPercent)
+        {
+            var order = new Order
+            {
+                Id = NewId.NextSequentialGuid(),
+                OrderCode = GenerateOrderCode(),
+                BuyerId = buyerId,
+                CreatedDate = DateTime.UtcNow,
+                Status = OrderStatus.WaitingForPayment,
+                DiscountRate = discountPercent,
+            };
             return order;
         }
 
