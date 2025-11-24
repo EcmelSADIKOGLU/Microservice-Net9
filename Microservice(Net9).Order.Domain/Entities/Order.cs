@@ -58,6 +58,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
             CalculateTotalPrice();
         }
 
+
         public void MarkAsPaid(Guid paymentId)
         {
             this.Status = OrderStatus.Paid;
