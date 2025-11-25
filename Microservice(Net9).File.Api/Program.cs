@@ -7,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddVersioningExt();
-
-
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
 
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));

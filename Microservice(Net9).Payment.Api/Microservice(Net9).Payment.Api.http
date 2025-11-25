@@ -1,0 +1,15 @@
+@baseAddress = http://localhost:5075
+
+Post {{baseAddress}}/api/v1/payments/
+Accept: application/json
+Content-Type: application/json
+{
+  "orderCode": "A91K3F2LQ8",
+  "cardNumber": "4539682995824395",
+  "cardHolderName": "ECMEL SADIKOGLU",
+  "expirationDate": "2027-05-01T00:00:00Z",
+  "cvv": "325",
+  "amount": 149.99
+}
+
+###

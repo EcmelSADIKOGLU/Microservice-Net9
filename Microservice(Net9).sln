@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11217.181 d18.0
+VisualStudioVersion = 18.0.11217.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -44,6 +44,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Order.Application", "Microservice(Net9).Order.Application\Microservice(Net9).Order.Application.csproj", "{8DF13A99-4D7C-4C20-8CAE-A0BA40ABFD35}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Order.Persistence", "Microservice(Net9).Order.Persistence\Microservice(Net9).Order.Persistence.csproj", "{A6E5E863-77B4-4400-95DA-CDDB4AF21A61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "payment", "payment", "{FD26A0C7-8582-490C-B155-376E18984206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Payment.Api", "Microservice(Net9).Payment.Api\Microservice(Net9).Payment.Api.csproj", "{49831925-6745-42ED-AAD8-758A75F11DF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,10 @@ Global
 		{A6E5E863-77B4-4400-95DA-CDDB4AF21A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E5E863-77B4-4400-95DA-CDDB4AF21A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E5E863-77B4-4400-95DA-CDDB4AF21A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49831925-6745-42ED-AAD8-758A75F11DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49831925-6745-42ED-AAD8-758A75F11DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49831925-6745-42ED-AAD8-758A75F11DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49831925-6745-42ED-AAD8-758A75F11DF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +123,8 @@ Global
 		{FAE3503D-6D53-49A5-8214-F17E1EB63FC9} = {C30BD913-1F83-4984-8774-B348720B2C01}
 		{8DF13A99-4D7C-4C20-8CAE-A0BA40ABFD35} = {C30BD913-1F83-4984-8774-B348720B2C01}
 		{A6E5E863-77B4-4400-95DA-CDDB4AF21A61} = {D473D1A2-D270-482D-8593-EB62F1663263}
+		{FD26A0C7-8582-490C-B155-376E18984206} = {41F9D4ED-1C2C-42E6-AF41-F2FBBFD402EE}
+		{49831925-6745-42ED-AAD8-758A75F11DF3} = {FD26A0C7-8582-490C-B155-376E18984206}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F05BD99A-8D4C-487C-A28D-BAB3B9E1ED9F}
