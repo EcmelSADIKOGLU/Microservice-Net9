@@ -13,3 +13,7 @@ Content-Type: application/json
 }
 
 ###
+Get {{baseAddress}}/api/v1/payments/user
+Accept: application/json
+
+###

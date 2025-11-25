@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning.Builder;
 using Microservice_Net9_.Payment.Api.Feature.Payments.Create;
+using Microservice_Net9_.Payment.Api.Feature.Payments.GetAllPaymentsByUserId;
 
 namespace Microservice_Net9_.Payment.Api.Feature.Payments
 {
@@ -9,7 +10,8 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments
         {
             app.MapGroup("api/v{version:apiVersion}/payments").WithTags("Payments")
                 .WithApiVersionSet(apiVersionSet)
-                .CreatePaymentGroupItem();
+                .CreatePaymentGroupItem()
+                .GetAllPaymentsByUserIdGroupItem();
 
         }
     }

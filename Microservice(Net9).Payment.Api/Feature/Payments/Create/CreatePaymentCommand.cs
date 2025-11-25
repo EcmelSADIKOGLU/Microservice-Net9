@@ -9,5 +9,5 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
         DateTime ExpirationDate,
         string Cvv,
         decimal Amount
-        ) : IRequestByServiceResult;
+        ) : IRequestByServiceResult<Guid>;
 }
