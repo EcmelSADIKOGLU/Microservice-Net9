@@ -65,6 +65,11 @@ namespace Microservice_Net9_.Order.Domain.Entities
         public void AddOrderItem(Guid productId, string productName, decimal unitPrice)
         {
             OrderItem item = new OrderItem();
+
+            if (DiscountRate.HasValue)
+            {
+                unitPrice -= (unitPrice * (decimal)DiscountRate.Value) / 100;
+            }
             item.SetItem(productId, productName, unitPrice);
             OrderItems.Add(item);
             CalculateTotalPrice();
@@ -95,15 +100,6 @@ namespace Microservice_Net9_.Order.Domain.Entities
         private void CalculateTotalPrice()
         {
             TotalPrice = OrderItems.Sum(item => item.UnitPrice);
-            if (DiscountRate.HasValue && DiscountRate.Value > 0)
-            {
-                TotalPrice -= (TotalPrice * (decimal)DiscountRate!.Value) / 100;
-            }
-
-
         }
-
-
-        
     }
 }

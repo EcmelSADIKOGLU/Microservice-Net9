@@ -1,4 +1,5 @@
 @baseAddress= http://localhost:5073
+@buyerID = 3FA85F64-5717-4562-B3FC-2C963F66AFA6
 
 
 POST {{baseAddress}}/api/v1/orders
@@ -35,3 +36,36 @@ Accept: application/json
 }
 
 ###
+
+POST {{baseAddress}}/api/v1/orders
+Content-Type: application/json
+Accept: application/json
+{
+  "discountRate": 20,
+  "address": {
+    "province": "Istanbul",
+    "district": "Kadikoy",
+    "street": "Bagdat",
+    "zipCode": "34000",
+    "line": "No 25"
+  },
+  "payment": {
+    "cardNumber": "4111111111111111",
+    "cardHolderName": "John Doe",
+    "expirationDate": "2027-05-01T00:00:00Z",
+    "cvv": "123",
+    "amount": 150
+  },
+  "orderItems": [
+    {
+      "productId": "d20a9c8c-5fd2-48a6-8650-a3df430112ab",
+      "productName": "C# For Beginner",
+      "unitPrice": 75
+    }
+  ]
+}
+
+###
+GET {{baseAddress}}/api/v1/orders/user/{{buyerID}}
+Content-Type: application/json
+
