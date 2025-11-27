@@ -12,7 +12,8 @@ namespace Microservice_Net9_.File.Api.Features.File
             app.MapGroup("api/v{version:apiVersion}/files").WithTags("Files")
                 .WithApiVersionSet(apiVersionSet)
                 .UploadFileGroupItem()
-                .DeleteFileGroupItem();
+                .DeleteFileGroupItem()
+                .RequireAuthorization();
 
                
         }

@@ -11,7 +11,8 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments
             app.MapGroup("api/v{version:apiVersion}/payments").WithTags("Payments")
                 .WithApiVersionSet(apiVersionSet)
                 .CreatePaymentGroupItem()
-                .GetAllPaymentsByUserIdGroupItem();
+                .GetAllPaymentsByUserIdGroupItem()
+                .RequireAuthorization();
 
         }
     }

@@ -20,6 +20,7 @@ builder.Services.AddRepositoryExt();
 
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 var app = builder.Build();
 
@@ -43,7 +44,8 @@ if (app.Environment.IsDevelopment())
     //app.MapOpenApi();
 }
 
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
 

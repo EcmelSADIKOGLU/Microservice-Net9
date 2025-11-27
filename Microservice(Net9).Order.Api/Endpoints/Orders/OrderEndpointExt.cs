@@ -9,7 +9,8 @@ namespace Microservice_Net9_.Order.Api.Endpoints.Orders
             app.MapGroup("api/v{version:apiVersion}/orders").WithTags("Orders")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateOrderGroupItem()
-                .GetOrdersByBuyerIdGroupItem();
+                .GetOrdersByBuyerIdGroupItem()
+                .RequireAuthorization();
         }
     }
 }

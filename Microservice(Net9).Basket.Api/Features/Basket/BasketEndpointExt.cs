@@ -17,7 +17,8 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket
                 .DeleteBasketItemGroupItem()
                 .GetBasketGroupItem()
                 .ApplyDiscountCouponGroupItem()
-                .ClearDiscountCouponGroupItem();
+                .ClearDiscountCouponGroupItem()
+                .RequireAuthorization();
 
         }
     }

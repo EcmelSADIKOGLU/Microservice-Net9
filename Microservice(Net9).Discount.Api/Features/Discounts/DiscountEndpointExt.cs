@@ -12,7 +12,8 @@ namespace Microservice_Net9_.Discount.Api.Features.Discounts
             app.MapGroup("api/v{version:apiVersion}/discounts").WithTags("Discounts")
                 .WithApiVersionSet(apiVersionSet)
                 .CreateDiscountGroupItem()
-                .GetDiscountByCodeEndpointGroupItem();
+                .GetDiscountByCodeEndpointGroupItem()
+                .RequireAuthorization();
 
 
 
