@@ -12,7 +12,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments
                 .WithApiVersionSet(apiVersionSet)
                 .CreatePaymentGroupItem()
                 .GetAllPaymentsByUserIdGroupItem()
-                .RequireAuthorization();
+                .RequireAuthorization("Password");
 
         }
     }

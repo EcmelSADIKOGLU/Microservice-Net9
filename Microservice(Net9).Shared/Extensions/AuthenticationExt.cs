@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 
 namespace Microservice_Net9_.Shared.Extensions
 {
@@ -28,11 +29,42 @@ namespace Microservice_Net9_.Shared.Extensions
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true
+                        ValidateIssuerSigningKey = true,
+                        RoleClaimType = "roles",
+                        NameClaimType = "preferred_username"
                     };  
+                })
+                .AddJwtBearer("ClientCredentialSchema", options =>
+                {
+                    options.Authority = identityOptions.Address;
+                    options.Audience = identityOptions.Audience;
+                    options.RequireHttpsMetadata = false;
+
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true
+                    };
                 });
 
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientCredentialPolicy", policy =>
+                {
+                    policy.AuthenticationSchemes.Add("ClientCredentialSchema");
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("client_id");
+                });
+
+                options.AddPolicy("Password", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim(ClaimTypes.Email);
+                });
+            });
             return services;
         }
     }

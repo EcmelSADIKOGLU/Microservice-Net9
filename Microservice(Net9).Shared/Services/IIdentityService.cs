@@ -5,5 +5,6 @@ namespace Microservice_Net9_.Shared.Services
     {
         public Guid GetUserId { get;}
         public string GetUserName { get;  }
+        public List<string> Roles { get; }
     }
 }

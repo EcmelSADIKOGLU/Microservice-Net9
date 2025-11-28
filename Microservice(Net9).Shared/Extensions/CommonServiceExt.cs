@@ -14,7 +14,7 @@ namespace Microservice_Net9_.Shared.Extensions
             
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining(assembly);
-            services.AddScoped<IIdentityService, IdentityServiceFake>();
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddAutoMapper(assembly);
             
