@@ -15,11 +15,8 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
         public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
 
-            var userName = identityService.GetUserName;
-            var userId = identityService.GetUserId;
-            var roles = identityService.Roles; //TODO: use roles does not come
 
-            var payment = new _Payment(identityService.GetUserId, request.OrderCode, request.Amount);
+            var payment = new _Payment(identityService.UserId, request.OrderCode, request.Amount);
             var result = await ExternalPaymentProcessAsync(request.CardNumber, request.CardHolderName, request.ExpirationDate, request.Cvv, request.Amount);
 
             if (!result.isSuccess)

@@ -8,7 +8,7 @@ namespace Microservice_Net9_.Shared.Services
 {
     public class IdentityService(IHttpContextAccessor httpContextAccessor) : IIdentityService
     {
-        public Guid GetUserId
+        public Guid UserId
         {
             get
             {
@@ -22,7 +22,7 @@ namespace Microservice_Net9_.Shared.Services
         }
         
 
-        public string GetUserName
+        public string UserName
         {
             get
             {

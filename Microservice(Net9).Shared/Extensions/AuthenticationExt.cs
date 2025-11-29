@@ -51,7 +51,7 @@ namespace Microservice_Net9_.Shared.Extensions
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ClientCredentialPolicy", policy =>
+                options.AddPolicy("ClientCredential", policy =>
                 {
                     policy.AuthenticationSchemes.Add("ClientCredentialSchema");
                     policy.RequireAuthenticatedUser();
