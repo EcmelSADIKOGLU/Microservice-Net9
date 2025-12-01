@@ -14,7 +14,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.GetAllPaymentsByUserId
         public async Task<ServiceResult<GetAllPaymentsByUserIdResponse>> Handle(GetAllPaymentsByUserIdQuery request, CancellationToken cancellationToken)
         {
             var paymentDtos = await appDbContext.Payments
-                .Where(p => p.BuyerId == identityService.GetUserId)
+                .Where(p => p.BuyerId == identityService.UserId)
                 .Select(p => new PaymentDto(
                     Id: p.Id,
                     OrderCode: p.OrderCode,

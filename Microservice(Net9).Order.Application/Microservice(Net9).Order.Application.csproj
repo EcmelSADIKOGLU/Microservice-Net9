@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Microservice(Net9).Bus\Microservice(Net9).Bus.csproj" />
     <ProjectReference Include="..\Microservice(Net9).Order.Domain\Microservice(Net9).Order.Domain.csproj" />
   </ItemGroup>
 

@@ -3,12 +3,8 @@ using MediatR;
 using Microservice_Net9_.Order.Application.Contracts.Repositories;
 using Microservice_Net9_.Order.Application.Dtos;
 using Microservice_Net9_.Shared;
-using Microservice_Net9_.Shared.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Microservice_Net9_.Order.Application.Features.Orders.GetById
+namespace Microservice_Net9_.Order.Application.UseCases.Orders.GetById
 {
     public class GetOrdersByBuyerIdQueryHandler(
         IOrderRepository orderRepository,

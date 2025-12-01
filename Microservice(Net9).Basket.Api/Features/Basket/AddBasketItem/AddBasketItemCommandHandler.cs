@@ -26,7 +26,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
             if (string.IsNullOrEmpty(basketAsJson))
             {
                 //currentBasket = new BasketDto(userId, [newBasketItem]);
-                currentBasket = new Data.Basket(identityService.GetUserId, new List<BasketItem> { newBasketItem });
+                currentBasket = new Data.Basket(identityService.UserId, new List<BasketItem> { newBasketItem });
 
                 await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
                 return ServiceResult.SuccessAsNoContent();

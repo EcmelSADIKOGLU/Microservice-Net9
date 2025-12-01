@@ -1,10 +1,7 @@
 ﻿using FluentValidation;
 using Microservice_Net9_.Order.Application.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Microservice_Net9_.Order.Application.Features.Orders.Create
+namespace Microservice_Net9_.Order.Application.UseCases.Orders.Create
 {
     public class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
     {

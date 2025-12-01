@@ -7,7 +7,7 @@ using Microservice_Net9_.Shared.Services;
 using System.Net;
 using _Order = Microservice_Net9_.Order.Domain.Entities.Order;
 
-namespace Microservice_Net9_.Order.Application.Features.Orders.Create
+namespace Microservice_Net9_.Order.Application.UseCases.Orders.Create
 {
     public class CreateOrderCommandHandler(
         IOrderRepository orderRepository,
@@ -32,7 +32,7 @@ namespace Microservice_Net9_.Order.Application.Features.Orders.Create
                 Line = request.Address.Line
             };
 
-            var order = _Order.CreateUnpaidOrder(identityService.GetUserId, request.DiscountRate);
+            var order = _Order.CreateUnpaidOrder(identityService.UserId, request.DiscountRate);
 
 
             foreach (var item in request.OrderItems)

@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using System.Text;
+﻿using System.Text;
 
 namespace Microservice_Net9_.Order.Domain.Entities
 {
@@ -37,7 +36,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
         {
             var order = new Order
             {
-                Id = NewId.NextSequentialGuid(),
+                Id = Guid.CreateVersion7(),
                 OrderCode = GenerateOrderCode(),
                 BuyerId = buyerId,
                 CreatedDate = DateTime.UtcNow,
@@ -52,7 +51,7 @@ namespace Microservice_Net9_.Order.Domain.Entities
         {
             var order = new Order
             {
-                Id = NewId.NextSequentialGuid(),
+                Id = Guid.CreateVersion7(),
                 OrderCode = GenerateOrderCode(),
                 BuyerId = buyerId,
                 CreatedDate = DateTime.UtcNow,

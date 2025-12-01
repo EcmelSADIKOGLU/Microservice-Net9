@@ -7,7 +7,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket
     public class BasketService(IDistributedCache distributedCache, IIdentityService identityService)
     {
         //0 yazan yere userId gelecek
-        private string GetCacheKey() => string.Format(BasketConst.BasketCacheKey, identityService.GetUserId); 
+        private string GetCacheKey() => string.Format(BasketConst.BasketCacheKey, identityService.UserId); 
 
         public Task<string?> GetBasketJsonFromCacheAsync(CancellationToken cancellationToken)
         {

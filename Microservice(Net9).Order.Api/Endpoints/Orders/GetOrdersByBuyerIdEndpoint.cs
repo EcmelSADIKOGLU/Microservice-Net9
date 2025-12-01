@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using Microservice_Net9_.Order.Application.Features.Orders.Create;
+using Microservice_Net9_.Order.Application.UseCases.Orders.GetById;
 using Microservice_Net9_.Shared;
-using Microservice_Net9_.Shared.Filters;
 using Microservice_Net9_.Shared.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using Microservice_Net9_.Order.Application.Features.Orders.GetById;
 
 namespace Microservice_Net9_.Order.Api.Endpoints.Orders
 {
