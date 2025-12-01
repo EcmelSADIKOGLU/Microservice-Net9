@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddVersioningExt();
 
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
-builder.Services.AddCommonMasstransitExt(builder.Configuration);
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 

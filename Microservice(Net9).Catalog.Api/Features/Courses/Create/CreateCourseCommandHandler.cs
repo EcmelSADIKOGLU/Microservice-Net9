@@ -51,7 +51,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
                     
                     var pictureAsByteArray = memoryStream.ToArray();
 
-                    var uploadCoursePictureCommand = new UploadCoursePictureCommand(course.Id, pictureAsByteArray);
+                    var uploadCoursePictureCommand = new UploadCoursePictureCommand(course.Id, pictureAsByteArray, request.Picture.FileName);
 
                     await publishEndpoint.Publish(uploadCoursePictureCommand, cancellationToken);
                 }

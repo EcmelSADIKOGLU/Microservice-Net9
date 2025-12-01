@@ -20,7 +20,7 @@ builder.Services.AddRepositoryExt();
 
 
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
-builder.Services.AddCommonMasstransitExt(builder.Configuration);
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
