@@ -10,7 +10,7 @@ builder.Services.AddScoped<BasketService>();
 builder.Services.AddVersioningExt();
 
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
-builder.Services.AddCommonMasstransitExt(builder.Configuration);
+builder.Services.AddMasstransitExt(builder.Configuration);
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {

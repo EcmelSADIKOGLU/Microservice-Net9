@@ -25,7 +25,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.DeleteBasketItem
 
             currentBasket.BasketItems.Remove(hasCourse);
 
-            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }

@@ -34,7 +34,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon
 
             currentBasket.ApplyNewDiscount(request.CouponCode, request.DiscountRate);
                 
-            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }

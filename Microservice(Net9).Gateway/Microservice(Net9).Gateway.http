@@ -1,5 +1,5 @@
 @baseAddress = http://localhost:5011
-@token = eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRQkNJb1p2M25aODRUM3JtZ3NBdlMxcVQ0dmlTRlhkV1YwVHdyZ19SSnJBIn0.eyJleHAiOjE3NjQ0NDQ1OTQsImlhdCI6MTc2NDQ0NDI5NCwianRpIjoiMDQyMWM1MmMtYmFjYy00MzllLTg1MGItOWQyZmM4NGI3ODYzIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9taWNyb3NlcnZpY2VUZW5hbnQiLCJhdWQiOlsicGF5bWVudC5hcGkiLCJvcmRlci5hcGkiLCJnYXRld2F5LmFwaSIsImRpc2NvdW50LmFwaSIsImZpbGUuYXBpIiwiYmFza2V0LmFwaSIsImNhdGFsb2cuYXBpIiwiYWNjb3VudCJdLCJzdWIiOiJhMTY0ZDRiMC0wZTExLTQ5N2YtYmUxOC05OGFjYTRjODVhZWIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ3ZWIiLCJzaWQiOiI5YmUxMTI1Ni0xM2UxLTRkMDEtYWMzNi0wYTM0YTZmOGU5OGMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgcGhvbmUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWljcm9zZXJ2aWNldGVuYW50IiwiaW5zdHJ1Y3RvciIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXSwibmFtZSI6IkVjbWVsIFNBRElLT8SeTFUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJlY21lbHNhZCIsImdpdmVuX25hbWUiOiJFY21lbCIsImZhbWlseV9uYW1lIjoiU0FESUtPxJ5MVSIsImVtYWlsIjoiZWNtZWxAZ21haWwuY29tIn0.uWHR9Pmy9qHGkP0QkiNtf3SYgNE5b1XuyW0H0Noddzbv8GE25Ssm3SdzRgRUTPs-sQEcLSjrgBcY3HQmb3awRlxI2SzFt73tqX1PYtDpGruYGVXAPrXh07QPhDeEnupMC-rcGqu-RcP-505KVReHPrUu-hnevORSL0uXNF3wRkaucsCoavPbznRqhM36Gm7-yF2hxC8vxPb888KtpPI0hr4hRBNF7NlP7ldUV1Kz72k1cTfGeuCYv-9XNsyuMs-xaEhrHDCuDsG74VjpmxW5pTWVI-P2Bq5eho2d5NaInOSBUyRME5YEmCfMT0fO6Ye1oZLGo6c5XkMR4J01CUALgQ
+@token = eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRQkNJb1p2M25aODRUM3JtZ3NBdlMxcVQ0dmlTRlhkV1YwVHdyZ19SSnJBIn0.eyJleHAiOjE3NjQ2Mjg5NDAsImlhdCI6MTc2NDYyODY0MCwianRpIjoiZjMwNjUwZmItNDczMS00MDYzLWJmYWUtN2E3MTZjNzY0MTM5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9taWNyb3NlcnZpY2VUZW5hbnQiLCJhdWQiOlsicGF5bWVudC5hcGkiLCJvcmRlci5hcGkiLCJnYXRld2F5LmFwaSIsImRpc2NvdW50LmFwaSIsImZpbGUuYXBpIiwiYmFza2V0LmFwaSIsImNhdGFsb2cuYXBpIiwiYWNjb3VudCJdLCJzdWIiOiJhMTY0ZDRiMC0wZTExLTQ5N2YtYmUxOC05OGFjYTRjODVhZWIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ3ZWIiLCJzaWQiOiI3ZWI2MGUxMS0zZmZlLTQ5NjgtYmU0ZS0yYTRhZTBmZTU4MTkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgcGhvbmUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbWljcm9zZXJ2aWNldGVuYW50IiwiaW5zdHJ1Y3RvciIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXSwibmFtZSI6IkVjbWVsIFNBRElLT8SeTFUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJlY21lbHNhZCIsImdpdmVuX25hbWUiOiJFY21lbCIsImZhbWlseV9uYW1lIjoiU0FESUtPxJ5MVSIsImVtYWlsIjoiZWNtZWxAZ21haWwuY29tIn0.JKfj0yelNjzsnsncpA5-i2r1OLr5E-_obbQDjb-qMVe_zv0IOuGGCPPob_7BW_UOkQ7XY3G6bHtJA7TIF-Xy7PeZfnQHCoUmy32Z4pJEgTebyP7k2IZUszxNDC1rzXx7CP-y9kuVIIfMc9QdHZDMKwl8UJTkEH2PIl57C7KAMRbUnPd8_xk1m3TOPWgCrpHz0Jcx6sP-Ewa1m1ZDQp2rpn5VVz1twwIoX14Dsxa8rIiI0AVz5bfPcwitUUqn-Zc0N8-yL3VAPbiOl_LYCGskZ-FPJwv9tpg7kYlmM7M-eE5efAmvqYF8zPFtbxICVWagL4h1zmWiP5SexrUh1fVPDA
 
 
 Post {{baseAddress}}/v1/payments/
@@ -18,5 +18,40 @@ Authorization: Bearer {{token}}
 ###
 Get {{baseAddress}}/v1/payments/user
 Accept: application/json
+
+###
+POST {{baseAddress}}/v1/orders
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+{
+  "DiscountRate": 10,
+  "Address": {
+    "Line": "123 Main St",
+    "Province": "Ontario",
+    "District": "Toronto",
+    "ZipCode": "12345",
+    "Street": "Main St"
+  },
+  "Payment": {
+    "CardNumber": "4111111111111111",
+    "CardHolderName": "John Doe",
+    "ExpirationDate":  "2027-05-01T00:00:00Z",
+    "Cvv": "123",
+    "Amount": 150.75
+  },
+  "OrderItems": [
+    {
+      "ProductId": "3762ff3a-4b07-4918-b478-d58df7edbffe",
+      "ProductName": "Course 15",
+      "UnitPrice": 100
+    },
+    {
+      "ProductId": "b1acc2a7-d4bc-4ea2-ae11-ac2800548e82",
+      "ProductName": "Course 16",
+      "UnitPrice": 200
+    }
+  ]
+}
 
 ###

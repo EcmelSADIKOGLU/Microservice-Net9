@@ -28,7 +28,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
                 //currentBasket = new BasketDto(userId, [newBasketItem]);
                 currentBasket = new Data.Basket(identityService.UserId, new List<BasketItem> { newBasketItem });
 
-                await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
+                await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
                 return ServiceResult.SuccessAsNoContent();
 
             }
@@ -47,7 +47,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
             currentBasket.ApplyExistingDiscount();  //if there is an existing discount, apply it to the new item
 
 
-            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
             return ServiceResult.SuccessAsNoContent();
 
         }

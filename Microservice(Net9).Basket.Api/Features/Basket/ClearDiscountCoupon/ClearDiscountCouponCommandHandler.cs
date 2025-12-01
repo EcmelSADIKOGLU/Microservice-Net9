@@ -22,7 +22,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.ClearDiscountCoupon
             }
 
             currentBasket.ClearDiscount();
-            await basketService.CreateBasketCashAsync(currentBasket, cancellationToken);
+            await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }
