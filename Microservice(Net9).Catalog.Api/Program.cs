@@ -1,3 +1,4 @@
+using Microservice_Net9_.Bus;
 using Microservice_Net9_.Catalog.Api;
 using Microservice_Net9_.Catalog.Api.Features.Categories;
 using Microservice_Net9_.Catalog.Api.Features.Courses;
@@ -19,6 +20,7 @@ builder.Services.AddRepositoryExt();
 
 
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 

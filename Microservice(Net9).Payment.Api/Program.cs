@@ -1,3 +1,4 @@
+using Microservice_Net9_.Bus;
 using Microservice_Net9_.Payment.Api;
 using Microservice_Net9_.Payment.Api.Feature.Payments;
 using Microservice_Net9_.Payment.Api.Repositories;
@@ -13,7 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddVersioningExt();
+
 builder.Services.AddCommonServiceExt(typeof(PaymentAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

@@ -1,3 +1,4 @@
+using Microservice_Net9_.Bus;
 using Microservice_Net9_.Discount.Api;
 using Microservice_Net9_.Discount.Api.Features.Discounts;
 using Microservice_Net9_.Discount.Api.Options;
@@ -17,6 +18,7 @@ builder.Services.AddOptionsExt();
 builder.Services.AddRepositoryExt();
 
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 

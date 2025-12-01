@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 
+
 namespace Microservice_Net9_.Shared.Extensions
 {
     public static class AuthenticationExt

@@ -1,3 +1,4 @@
+using Microservice_Net9_.Bus;
 using Microservice_Net9_.Order.Api;
 using Microservice_Net9_.Order.Api.Endpoints.Orders;
 using Microservice_Net9_.Order.Application;
@@ -17,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer(); // Required for minimal APIs. To swa
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddVersioningExt();
 

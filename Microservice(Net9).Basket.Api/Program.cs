@@ -1,5 +1,6 @@
 using Microservice_Net9_.Basket.Api;
 using Microservice_Net9_.Basket.Api.Features.Basket;
+using Microservice_Net9_.Bus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,9 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BasketService>();
 builder.Services.AddVersioningExt();
+
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
