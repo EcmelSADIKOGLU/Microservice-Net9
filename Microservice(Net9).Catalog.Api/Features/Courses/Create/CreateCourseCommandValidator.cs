@@ -20,8 +20,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
             RuleFor(x => x.CategoryId)
                .NotEmpty().WithMessage("{PropertyName} can not be empty.");
 
-            RuleFor(x => x.ImageUrl)
-               .MaximumLength(500).WithMessage("{PropertyName} must be at most 500 characters.");
+            //RuleFor(x => x.ImageUrl)
+            //   .MaximumLength(500).WithMessage("{PropertyName} must be at most 500 characters.");
 
 
             

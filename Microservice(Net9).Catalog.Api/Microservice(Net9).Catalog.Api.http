@@ -39,7 +39,7 @@ Content-Type: application/json
 {
     "name": "Course Deneme",
     "description": "This is a test",
-    "imageUrl": "https://picsum.photos/200",
+    "Picture": "https://picsum.photos/200",
     "price": 50.3,
     "categoryId": "{{exampleCategoryId}}"
 }
@@ -57,7 +57,7 @@ Content-Type: application/json
     "id": "{{exampleCourseId}}",
     "name": "Course Deneme Change",
     "description": "This is a test",
-    "imageUrl": "https://picsum.photos/200",
+    "Picture": "https://picsum.photos/200",
     "price": 50.3,
     "categoryId": "{{exampleCategoryId}}"
 }

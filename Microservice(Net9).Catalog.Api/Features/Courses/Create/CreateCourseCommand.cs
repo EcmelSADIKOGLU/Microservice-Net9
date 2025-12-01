@@ -3,7 +3,7 @@
     public record CreateCourseCommand(
         string Name, 
         string Description,  
-        string? ImageUrl, 
+        IFormFile? Picture, 
         decimal Price,
         Guid CategoryId) : IRequestByServiceResult<Guid>;
 

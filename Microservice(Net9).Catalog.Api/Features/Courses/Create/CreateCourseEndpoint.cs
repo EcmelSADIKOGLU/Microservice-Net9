@@ -1,4 +1,5 @@
 ﻿using Microservice_Net9_.Shared.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
 {
@@ -6,7 +7,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
     {
         public static RouteGroupBuilder CreateCourseGroupItem(this RouteGroupBuilder group)
         {
-            group.MapPost("/", async (CreateCourseCommand command, IMediator mediator) =>
+            group.MapPost("/", async ([FromForm]CreateCourseCommand command, IMediator mediator) =>
             {
 
                 var result = await mediator.Send(command);
@@ -16,7 +17,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
                 .MapToApiVersion(1, 0)
                 .WithName("CreateCourse")
                 .Produces<Guid>(StatusCodes.Status201Created)
-                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
+                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>()
+                .DisableAntiforgery(); //multipart form data requests are not supported by antiforgery
 
             return group;
         }

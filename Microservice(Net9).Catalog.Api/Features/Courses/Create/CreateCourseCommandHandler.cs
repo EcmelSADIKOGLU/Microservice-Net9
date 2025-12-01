@@ -1,9 +1,13 @@
 ﻿
+using Microservice_Net9_.Bus.Commands;
 using Microservice_Net9_.Catalog.Api.Repositories;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
 {
-    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
+    public class CreateCourseCommandHandler(AppDbContext context, 
+        IMapper mapper,
+        IPublishEndpoint publishEndpoint
+        ) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
         {
@@ -37,6 +41,24 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
 
             await context.Courses.AddAsync(course, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
+
+
+            if (request.Picture is not null)
+            {
+                using (MemoryStream memoryStream = new())
+                {
+                    await request.Picture.CopyToAsync(memoryStream, cancellationToken);
+                    
+                    var pictureAsByteArray = memoryStream.ToArray();
+
+                    var uploadCoursePictureCommand = new UploadCoursePictureCommand(course.Id, pictureAsByteArray);
+
+                    await publishEndpoint.Publish(uploadCoursePictureCommand, cancellationToken);
+                }
+                ;
+
+            }
+
 
             return ServiceResult<Guid>.SuccessAsCreated(course.Id, $"/api/courses/{course.Id}");
            
