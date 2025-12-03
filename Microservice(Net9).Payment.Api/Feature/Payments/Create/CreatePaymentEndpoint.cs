@@ -17,7 +17,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
             })
                 .MapToApiVersion(1, 0)
                 .WithName("CreatePayment")
-                .Produces<ServiceResult<Guid>>(StatusCodes.Status201Created)
+                .Produces<ServiceResult<CreatePaymentResponse>>(StatusCodes.Status201Created)
                 .AddEndpointFilter<ValidationFilter<CreatePaymentCommand>>();
 
             return group;

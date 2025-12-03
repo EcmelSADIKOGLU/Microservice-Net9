@@ -10,9 +10,9 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
     public class CreatePaymentCommandHandler(
         AppDbContext appDbContext,
         IIdentityService identityService
-        ) : IRequestHandler<CreatePaymentCommand, ServiceResult<Guid>>
+        ) : IRequestHandler<CreatePaymentCommand, ServiceResult<CreatePaymentResponse>>
     {
-        public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
+        public async Task<ServiceResult<CreatePaymentResponse>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
         {
 
 
@@ -22,7 +22,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
             if (!result.isSuccess)
             {
                 payment.SetPaymentStatus(PaymentStatus.Failed);
-                return ServiceResult<Guid>.Error("Payment failed", result.errorMessage!, HttpStatusCode.BadRequest);
+                return ServiceResult<CreatePaymentResponse>.Error("Payment failed", result.errorMessage!, HttpStatusCode.BadRequest);
             }
 
             payment.SetPaymentStatus(PaymentStatus.Success);
@@ -30,7 +30,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.Create
             await appDbContext.Payments.AddAsync(payment, cancellationToken);
             await appDbContext.SaveChangesAsync(cancellationToken);
 
-            return ServiceResult<Guid>.SuccessAsCreated(payment.Id, $"payment/{payment.Id}");
+            return ServiceResult<CreatePaymentResponse>.SuccessAsCreated(new CreatePaymentResponse(payment.Id, true, null), $"payment/{payment.Id}");
 
         }
 
