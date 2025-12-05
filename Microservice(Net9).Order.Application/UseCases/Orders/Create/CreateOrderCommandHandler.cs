@@ -1,6 +1,7 @@
 ﻿using MassTransit;
 using MediatR;
 using Microservice_Net9_.Bus.Events;
+using Microservice_Net9_.Order.Application.Contracts.Refit.PaymentService;
 using Microservice_Net9_.Order.Application.Contracts.Repositories;
 using Microservice_Net9_.Order.Application.Contracts.UnitOfWork;
 using Microservice_Net9_.Order.Domain.Entities;
@@ -16,7 +17,8 @@ namespace Microservice_Net9_.Order.Application.UseCases.Orders.Create
         IOrderRepository orderRepository,
         IIdentityService identityService,
         IUnitOfWork unitOfWork,
-        IPublishEndpoint publishEndpoint
+        IPublishEndpoint publishEndpoint,
+        IPaymentService paymentService
         ) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -49,17 +51,29 @@ namespace Microservice_Net9_.Order.Application.UseCases.Orders.Create
             await unitOfWork.CommitAsync(cancellationToken);
 
 
-            //TODO: Payment
-            var paymentId = Guid.Empty;
+            var createPaymentRequest = new CreatePaymentRequest(
+                order.OrderCode,
+                request.Payment.CardNumber,
+                request.Payment.CardHolderName,
+                request.Payment.ExpirationDate,
+                request.Payment.Cvv,
+                order.TotalPrice
+                );
 
+            CreatePaymentResponse createPaymentResponse = await paymentService.CreateAsync(createPaymentRequest);
 
-            order.MarkAsPaid(paymentId);
+            if (!createPaymentResponse.Status)
+            {
+                return ServiceResult.Error("Payment Failed", createPaymentResponse.ErrorMessage!, HttpStatusCode.BadRequest);
+            }
+
+            order.MarkAsPaid(createPaymentResponse.PaymentId!.Value);
 
             orderRepository.Update(order);
             await unitOfWork.CommitAsync(cancellationToken);
 
 
-            await publishEndpoint.Publish(new OrderCreatedEvent(order.OrderItems.Select(x=>x.ProductId).ToList() ,identityService.UserId));
+            await publishEndpoint.Publish(new OrderCreatedEvent(order.OrderItems.Select(x => x.ProductId).ToList(), identityService.UserId));
 
 
             return ServiceResult.SuccessAsNoContent();

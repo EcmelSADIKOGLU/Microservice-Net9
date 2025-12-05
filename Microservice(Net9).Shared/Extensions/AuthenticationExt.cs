@@ -30,9 +30,7 @@ namespace Microservice_Net9_.Shared.Extensions
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        RoleClaimType = "roles",
-                        NameClaimType = "preferred_username"
+                        ValidateIssuerSigningKey = true
                     };  
                 })
                 .AddJwtBearer("ClientCredentialSchema", options =>

@@ -6,7 +6,7 @@ using System.Text;
 namespace Microservice_Net9_.Order.Application.Contracts.Refit
 {
     // Intercept (Requestte araya giren işlemler)
-    public class AuthenticatedHttpClientHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
+    internal class AuthenticatedHttpClientHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
     {
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {

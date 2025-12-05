@@ -16,7 +16,8 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.GetAllPaymentsByUserId
             })
                 .MapToApiVersion(1, 0)
                 .WithName("GetAllPaymentsByUserId")
-                .Produces<ServiceResult>(StatusCodes.Status200OK);
+                .Produces<ServiceResult>(StatusCodes.Status200OK)
+                .RequireAuthorization("Password");
 
             return group;
         }

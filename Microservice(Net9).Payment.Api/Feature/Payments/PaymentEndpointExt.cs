@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using Microservice_Net9_.Payment.Api.Feature.Payments.Create;
 using Microservice_Net9_.Payment.Api.Feature.Payments.GetAllPaymentsByUserId;
+using Microservice_Net9_.Payment.Api.Feature.Payments.GetStatus;
 
 namespace Microservice_Net9_.Payment.Api.Feature.Payments
 {
@@ -12,7 +13,7 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments
                 .WithApiVersionSet(apiVersionSet)
                 .CreatePaymentGroupItem()
                 .GetAllPaymentsByUserIdGroupItem()
-                .RequireAuthorization("Password");
+                .GetPaymentStatusGroupItem();
 
         }
     }
