@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Microservice_Net9_.Order.Application.Contracts.Refit
@@ -23,7 +24,7 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
             }
             
             if (!string.IsNullOrEmpty(token))
-                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
 
             return await base.SendAsync(request, cancellationToken);
