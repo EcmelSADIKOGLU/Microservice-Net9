@@ -1,7 +1,11 @@
+using Microservice_Net9_.Web.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddOptionsExt();
 
 var app = builder.Build();
 
