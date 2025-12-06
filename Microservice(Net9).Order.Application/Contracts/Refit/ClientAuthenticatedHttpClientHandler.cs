@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityModel.Client;
 using Microservice_Net9_.Shared.Options;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
     {
         override protected async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            if (request.Headers.Authorization is not null) return await base.SendAsync(request, cancellationToken);
+
             using (var scope = serviceProvider.CreateScope())
             {
                 var identityOption = scope.ServiceProvider.GetRequiredService<IdentityOption>();
@@ -27,6 +30,8 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
                 };
 
                 var client = httpClientFactory.CreateClient("IdentityClient");
+
+                client.BaseAddress = new Uri(identityOption.Address);
                 var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
 
                 if (discoveryResponse.IsError)

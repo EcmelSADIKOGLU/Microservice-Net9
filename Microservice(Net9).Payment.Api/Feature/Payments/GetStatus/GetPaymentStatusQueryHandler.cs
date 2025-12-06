@@ -10,8 +10,12 @@ namespace Microservice_Net9_.Payment.Api.Feature.Payments.GetStatus
         public async Task<ServiceResult<GetPaymentStatusRepsonse>> Handle(GetPaymentStatusQuery request, CancellationToken cancellationToken)
         {
             var payment = await appDbContext.Payments.FirstOrDefaultAsync(p => p.OrderCode == request.OrderCode);
+            if (payment == null) 
+            {
+                return ServiceResult<GetPaymentStatusRepsonse>.SuccessAsOk(new GetPaymentStatusRepsonse(false, null));
+            }
 
-            return ServiceResult<GetPaymentStatusRepsonse>.SuccessAsOk(new GetPaymentStatusRepsonse(payment != null));
+            return ServiceResult<GetPaymentStatusRepsonse>.SuccessAsOk(new GetPaymentStatusRepsonse(true, payment.Id));
 
         }
     }

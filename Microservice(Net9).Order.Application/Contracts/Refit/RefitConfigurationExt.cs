@@ -13,6 +13,8 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
         {
 
             services.AddScoped<AuthenticatedHttpClientHandler>();
+            services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+
             services.AddOptions<IdentityOption>()
                 .BindConfiguration(nameof(IdentityOption))
                 .ValidateDataAnnotations()
@@ -36,7 +38,9 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
                 var addressUrlOption = configuration.GetRequiredSection(nameof(AddressUrlOption)).Get<AddressUrlOption>();
 
                 configure.BaseAddress = new Uri(addressUrlOption!.PaymentUrl);
-            }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
+            })
+            .AddHttpMessageHandler<AuthenticatedHttpClientHandler>()         //Password
+            .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();  //ClientCredential
 
             return services;
         }

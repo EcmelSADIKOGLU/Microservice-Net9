@@ -2,6 +2,7 @@ using Microservice_Net9_.Bus;
 using Microservice_Net9_.Order.Api;
 using Microservice_Net9_.Order.Api.Endpoints.Orders;
 using Microservice_Net9_.Order.Application;
+using Microservice_Net9_.Order.Application.BackgroundServices;
 using Microservice_Net9_.Order.Application.Contracts.Refit;
 using Microservice_Net9_.Order.Application.Contracts.Refit.PaymentService;
 using Microservice_Net9_.Order.Application.Contracts.Repositories;
@@ -37,6 +38,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddRefitConfiguration(builder.Configuration);
+
+builder.Services.AddHostedService<CheckPaymentStatusOrderBackgrounService>();
 
 var app = builder.Build();
 
