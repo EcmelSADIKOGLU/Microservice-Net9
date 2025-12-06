@@ -55,6 +55,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Gateway"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Bus", "Microservice(Net9).Bus\Microservice(Net9).Bus.csproj", "{108203EB-0FAF-460A-A2AC-0BD02FB62FC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{BCA9E9B4-2384-43AE-95C5-2E935C4E1BD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice(Net9).Web", "Microservice(Net9).Web\Microservice(Net9).Web.csproj", "{750698CD-767A-4810-822A-45D559FE20E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +117,10 @@ Global
 		{108203EB-0FAF-460A-A2AC-0BD02FB62FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{108203EB-0FAF-460A-A2AC-0BD02FB62FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{108203EB-0FAF-460A-A2AC-0BD02FB62FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750698CD-767A-4810-822A-45D559FE20E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750698CD-767A-4810-822A-45D559FE20E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750698CD-767A-4810-822A-45D559FE20E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750698CD-767A-4810-822A-45D559FE20E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +150,8 @@ Global
 		{5B8B87F7-4623-4139-9424-28B26DB79F08} = {41F9D4ED-1C2C-42E6-AF41-F2FBBFD402EE}
 		{5F89E4AB-F8B1-4D40-A4EA-8E9DAF24AE33} = {5B8B87F7-4623-4139-9424-28B26DB79F08}
 		{108203EB-0FAF-460A-A2AC-0BD02FB62FC8} = {E357AE9D-C65A-4ECC-A4AF-CB5EF4C14011}
+		{BCA9E9B4-2384-43AE-95C5-2E935C4E1BD9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{750698CD-767A-4810-822A-45D559FE20E1} = {BCA9E9B4-2384-43AE-95C5-2E935C4E1BD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F05BD99A-8D4C-487C-A28D-BAB3B9E1ED9F}
