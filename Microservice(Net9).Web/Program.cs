@@ -1,4 +1,5 @@
 using Microservice_Net9_.Web.Extensions;
+using Microservice_Net9_.Web.Pages.Auth.SignUp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddOptionsExt();
+
+builder.Services.AddHttpClient<AccountService>();
 
 var app = builder.Build();
 

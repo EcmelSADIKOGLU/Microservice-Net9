@@ -7,4 +7,9 @@
     <RootNamespace>Microservice_Net9_.Web</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Duende.IdentityModel" Version="8.0.0" />
+    <PackageReference Include="Refit" Version="9.0.2" />
+  </ItemGroup>
+
 </Project>
