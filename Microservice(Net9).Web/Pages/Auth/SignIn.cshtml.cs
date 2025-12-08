@@ -16,7 +16,7 @@ namespace Microservice_Net9_.Web.Pages.Auth
         {
             if (!ModelState.IsValid) { return Page(); }
 
-            ServiceResult tokenResponse = await signInService.SignInAsync(SignInViewModel);
+            ServiceResult tokenResponse = await signInService.AuthenticateAsync(SignInViewModel);
 
             if (tokenResponse.isFail)
             {

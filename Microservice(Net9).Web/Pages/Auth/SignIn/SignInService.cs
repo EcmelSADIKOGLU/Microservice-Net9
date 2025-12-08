@@ -2,13 +2,21 @@
 using Microservice_Net9_.Web.Pages.Auth.SignUp;
 using Microservice_Net9_.Web.Pages.Options;
 using Microservice_Net9_.Web.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace Microservice_Net9_.Web.Pages.Auth.SignIn
 {
-    public class SignInService(IdentityOption identityOption, HttpClient client, ILogger<SignUpService> logger)
+    public class SignInService(
+        IHttpContextAccessor httpContextAccessor,
+        TokenService tokenService,
+        IdentityOption identityOption, 
+        HttpClient client, 
+        ILogger<SignUpService> logger)
     {
 
-        public async Task<ServiceResult> SignInAsync(SignInViewModel signInViewModel)
+        public async Task<ServiceResult> AuthenticateAsync(SignInViewModel signInViewModel)
         {
 
             var tokenResponse = await GetTokenResponseAsync(signInViewModel);
@@ -17,6 +25,17 @@ namespace Microservice_Net9_.Web.Pages.Auth.SignIn
             {
                 return ServiceResult.Error(tokenResponse.Error!, tokenResponse.ErrorDescription!);
             }
+
+            var userClaims = tokenService.ExtractClaims(tokenResponse.AccessToken!);
+
+            var authenticateProperties = tokenService.CreateAuthenticationProperties(tokenResponse);
+
+            var cleamIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+
+            var claimPrincipal = new ClaimsPrincipal(cleamIdentity);
+
+            await httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal, authenticateProperties);
+
 
             return ServiceResult.Success();
              
