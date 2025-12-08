@@ -1,5 +1,7 @@
-using Microservice_Net9_.Web.Pages.Auth.SignIn;
+﻿using Microservice_Net9_.Web.Pages.Auth.SignIn;
 using Microservice_Net9_.Web.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -29,6 +31,13 @@ namespace Microservice_Net9_.Web.Pages.Auth
                 return Page();
             }
 
+            return RedirectToPage("/Index");
+        }
+
+        //SignIn/SignOut ismi ile erişilebilir.
+        public async Task<IActionResult> OnGetSignOutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToPage("/Index");
         }
     }
