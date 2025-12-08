@@ -8,7 +8,7 @@ using System.Net;
 namespace Microservice_Net9_.Web.Pages.Auth.SignUp
 {
     public record KeycloakErrorResponse(string ErrorMessage);
-    public class AccountService(IdentityOption identityOption, HttpClient client, ILogger<AccountService> logger)
+    public class SignUpService(IdentityOption identityOption, HttpClient client, ILogger<SignUpService> logger)
     {
         private async Task<string> GetClientCredentialTokenAsAdminAsync()
         {
