@@ -14,6 +14,13 @@ namespace Microservice_Net9_.Web.Extensions
 
             services.AddSingleton<IdentityOption>(sp => sp.GetRequiredService<IOptions<IdentityOption>>().Value);
 
+            services.AddOptions<GatewayOption>()
+                .BindConfiguration(nameof(GatewayOption))
+                .ValidateDataAnnotations().
+                ValidateOnStart();
+
+            services.AddSingleton<GatewayOption>(sp => sp.GetRequiredService<IOptions<GatewayOption>>().Value);
+
             return services;
         }
     }
