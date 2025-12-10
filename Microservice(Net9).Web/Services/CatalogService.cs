@@ -14,7 +14,7 @@ namespace Microservice_Net9_.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content);
+                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
                 logger.LogError("Error occured while fetching categories");
 
                 return ServiceResult<List<CategoryViewModel>>.Error("Fail to retrieve categories. Please try again later.");
@@ -38,6 +38,8 @@ namespace Microservice_Net9_.Web.Services
             
 
             var response = await catalogRefitService.CreateCourseAsync(model.Name, model.Description, model.Price, pictureStreamPart, model.CategoryId.ToString()!);
+
+            return ServiceResult.Success();
         }
 
     }

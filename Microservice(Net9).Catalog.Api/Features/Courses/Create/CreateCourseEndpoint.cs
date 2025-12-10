@@ -18,6 +18,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
                 .WithName("CreateCourse")
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>()
+                .RequireAuthorization("instructor")
                 .DisableAntiforgery(); //multipart form data requests are not supported by antiforgery
 
             return group;

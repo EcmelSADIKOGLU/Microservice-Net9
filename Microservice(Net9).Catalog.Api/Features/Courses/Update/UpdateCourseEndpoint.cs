@@ -15,7 +15,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Update
                 .AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>()
                 .WithName("UpdateCourse")
                 .Produces<ServiceResult>(StatusCodes.Status204NoContent)
-                .Produces<ServiceResult>(StatusCodes.Status404NotFound);
+                .Produces<ServiceResult>(StatusCodes.Status404NotFound)
+                .RequireAuthorization("instructor");
             return group;
         }
     }

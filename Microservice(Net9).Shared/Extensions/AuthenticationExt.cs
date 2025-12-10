@@ -66,6 +66,14 @@ namespace Microservice_Net9_.Shared.Extensions
                     policy.RequireClaim(ClaimTypes.Email);
                 });
 
+                options.AddPolicy("Instructor", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim(ClaimTypes.Email);
+                    policy.RequireRole(ClaimTypes.Role, "instructor");
+                });
+
             });
             return services;
         }
