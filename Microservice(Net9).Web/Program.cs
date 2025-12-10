@@ -24,20 +24,23 @@ builder.Services.AddScoped<CatalogService>();
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
+builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+
 builder.Services.AddRefitClient<ICatalogRefitService>().ConfigureHttpClient(configure =>
 {
-    var gatewayOption = builder.Configuration.GetRequiredSection(nameof(GatewayOption)).Get<GatewayOption>();
+    var microserviceOption = builder.Configuration.GetRequiredSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
 
-    configure.BaseAddress = new Uri(gatewayOption!.BaseAddress);
+    configure.BaseAddress = new Uri(microserviceOption!.Catalog.BaseAddress);
 })
 .AddHttpMessageHandler<AuthenticatedHttpClientHandler>()         //Password
 .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();  //ClientCredential
 
-builder.Services.AddAuthentication(configureOptions =>
-    {
-        configureOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        configureOptions.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    })
+builder.Services.AddAuthentication(configureOption =>
+{
+    configureOption.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    configureOption.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
     {
         options.LoginPath = "/Auth/SignIn";
@@ -58,8 +61,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapStaticAssets();
 app.MapRazorPages()

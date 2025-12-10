@@ -30,7 +30,9 @@ namespace Microservice_Net9_.Shared.Extensions
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true
+                        ValidateIssuerSigningKey = true,
+                        RoleClaimType = ClaimTypes.Role,
+                        NameClaimType = ClaimTypes.Name
                     };  
                 })
                 .AddJwtBearer("ClientCredentialSchema", options =>
@@ -54,7 +56,7 @@ namespace Microservice_Net9_.Shared.Extensions
                 {
                     policy.AuthenticationSchemes.Add("ClientCredentialSchema");
                     policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("client_id");
+                   // policy.RequireClaim("client_id"); I dont use this because i want password token can reach
                 });
 
                 options.AddPolicy("Password", policy =>
@@ -63,6 +65,7 @@ namespace Microservice_Net9_.Shared.Extensions
                     policy.RequireAuthenticatedUser();
                     policy.RequireClaim(ClaimTypes.Email);
                 });
+
             });
             return services;
         }

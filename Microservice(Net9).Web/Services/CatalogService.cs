@@ -19,7 +19,7 @@ namespace Microservice_Net9_.Web.Services
                 return ServiceResult<List<CategoryViewModel>>.Error("Fail to retrieve categories. Please try again later.");
             }
 
-            var categories = response.Content!.Data!.Select(c => new CategoryViewModel(c.Id, c.Name)).ToList();
+            var categories = response.Content!.Categories.Select(c => new CategoryViewModel(c.Id, c.Name)).ToList();
 
             return  ServiceResult<List<CategoryViewModel>>.Success(categories);
         }

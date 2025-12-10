@@ -1,21 +1,29 @@
 ﻿using Microservice_Net9_.Web.Pages.Instructor.Dtos;
 using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
+using Microservice_Net9_.Web.Services.ResponseDtos;
 using Refit;
 
 namespace Microservice_Net9_.Web.Services.Refit
 {
     public interface ICatalogRefitService
-    {
-        [Get("/v1/catalog/categories")]
-        Task<ApiResponse<ServiceResult<List<CategoryDto>>>> GetCategoriesAsync();
+    {   
+        [Get("/api/v1/categories")]
+        Task<ApiResponse<GetAllCategoryResponseDto>> GetCategoriesAsync();
 
-        [Post("/v1/catalog/courses")]
-        Task<ApiResponse<ServiceResult>> CreateCourseAsync(CreateCourseRequest createCourseRequest);
+        [Multipart]
+        [Post("/api/v1/courses")]
+        Task<ApiResponse<object>> CreateCourseAsync(
+            [AliasAs("Name")] string Name,
+            [AliasAs("Description")] string Description,
+            [AliasAs("Price")] decimal Price,
+            [AliasAs("Picture")] StreamPart? Picture,
+            [AliasAs("CategoryId")] string CategoryId);
 
-        [Put("/v1/catalog/courses")]
-        Task<ApiResponse<ServiceResult>> UpgradeCourseAsync(UpdateCourseRequest createCourseRequest);
 
-        [Delete("/v1/catalog/courses/{id}")]
-        Task<ApiResponse<ServiceResult>> DeleteCourseAsync(Guid id);
+        [Put("/api/v1/courses")]
+        Task<ApiResponse<object>> UpgradeCourseAsync(UpdateCourseRequest createCourseRequest);
+
+        [Delete("/api/v1/courses/{id}")]
+        Task<ApiResponse<object>> DeleteCourseAsync(Guid id);
     }
 }

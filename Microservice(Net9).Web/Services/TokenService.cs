@@ -52,7 +52,23 @@ namespace Microservice_Net9_.Web.Services
 
         public async Task<TokenResponse> GetTokensByRefreshTokenAsync(string refreshToken)
         {
-            var discoveryResponse = await GetDiscoveryDocumentResponseAsync();
+            var discoveryRequest = new DiscoveryDocumentRequest()
+            {
+                Address = identityOption.Address,
+                Policy = new Duende.IdentityModel.Client.DiscoveryPolicy()
+                {
+                    RequireHttps = false
+                }
+            };
+
+            httpClient.BaseAddress = new Uri(identityOption.Address);
+
+            var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync(discoveryRequest);
+
+            if (discoveryResponse.IsError)
+            {
+                throw new Exception($"Discovery document request failed: {discoveryResponse.Error}");
+            }
 
             var refreshTokenRequest = new RefreshTokenRequest(){
                 ClientId = identityOption.Web.ClientId,
@@ -69,7 +85,23 @@ namespace Microservice_Net9_.Web.Services
 
         public async Task<TokenResponse> GetClientAccessTokenAsync()
         {
-            var discoveryResponse = await GetDiscoveryDocumentResponseAsync();
+            var discoveryRequest = new DiscoveryDocumentRequest()
+            {
+                Address = identityOption.Address,
+                Policy = new Duende.IdentityModel.Client.DiscoveryPolicy()
+                {
+                    RequireHttps = false
+                }
+            };
+
+            httpClient.BaseAddress = new Uri(identityOption.Address);
+
+            var discoveryResponse = await httpClient.GetDiscoveryDocumentAsync(discoveryRequest);
+
+            if (discoveryResponse.IsError)
+            {
+                throw new Exception($"Discovery document request failed: {discoveryResponse.Error}");
+            }
 
             var clientTokenRequest = new ClientCredentialsTokenRequest()
             {

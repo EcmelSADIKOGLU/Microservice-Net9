@@ -15,7 +15,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Categories.GetAll
                 (await mediator.Send(new GetAllCategoryQuery())).ToGenericResult())
                 .MapToApiVersion(1, 0)
                 .Produces<GetAllCategoryResponse>(StatusCodes.Status200OK)
-                .WithName("GetAllCategory");
+                .WithName("GetAllCategory")
+                .RequireAuthorization(policyNames: "ClientCredential");
 
             return group;
         }
