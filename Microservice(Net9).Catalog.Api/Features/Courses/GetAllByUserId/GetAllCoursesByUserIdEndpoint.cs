@@ -15,7 +15,8 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.GetAllByUserId
             })
                 .MapToApiVersion(1, 0)
                 .Produces<GetAllCoursesResponse>(StatusCodes.Status200OK)
-                .WithName("GetAllCoursesByUserId");
+                .WithName("GetAllCoursesByUserId")
+                .RequireAuthorization("instructor");
 
 
             return group;
