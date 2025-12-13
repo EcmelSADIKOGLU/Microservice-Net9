@@ -84,5 +84,17 @@ namespace Microservice_Net9_.Web.Services
             return ServiceResult<CourseListViewModel>.Success( new CourseListViewModel(courseModels));
         }
 
+        public async Task<ServiceResult> DeleteCourseAsync(Guid courseId)
+        {
+            var response = await catalogRefitService.DeleteCourseAsync(courseId);
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
+                logger.LogError("Error occured while deleting course");
+
+                return ServiceResult.Error("Fail to delete course. Please try again later.");
+            }
+           return ServiceResult.Success();
+        }
     }
 }

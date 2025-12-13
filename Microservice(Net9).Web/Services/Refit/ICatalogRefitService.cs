@@ -13,6 +13,8 @@ namespace Microservice_Net9_.Web.Services.Refit
         [Get("/api/v1/courses/GetAllCoursesByUserId/{userId}")]
         Task<ApiResponse<GetAllCoursesResponseDto>> GetCoursesByUserIdAsync(Guid userId);
 
+        
+
         [Multipart]
         [Post("/api/v1/courses")]
         Task<ApiResponse<object>> CreateCourseAsync(
@@ -26,7 +28,8 @@ namespace Microservice_Net9_.Web.Services.Refit
         [Put("/api/v1/courses")]
         Task<ApiResponse<object>> UpgradeCourseAsync(UpdateCourseRequest createCourseRequest);
 
-        [Delete("/api/v1/courses/{id}")]
-        Task<ApiResponse<object>> DeleteCourseAsync(Guid id);
+        [Delete("/api/v1/courses/{courseId}")]
+        Task<ApiResponse<object>> DeleteCourseAsync(Guid courseId);
+
     }
 }
