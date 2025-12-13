@@ -1,12 +1,14 @@
 ﻿
 using Microservice_Net9_.Bus.Commands;
 using Microservice_Net9_.Catalog.Api.Repositories;
+using Microservice_Net9_.Shared.Services;
 
 namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
 {
     public class CreateCourseCommandHandler(AppDbContext context, 
         IMapper mapper,
-        IPublishEndpoint publishEndpoint
+        IPublishEndpoint publishEndpoint,
+        IIdentityService identityService
         ) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
@@ -28,14 +30,14 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
             }
 
             course.Id = NewId.NextSequentialGuid();
-            course.UserId = NewId.NextSequentialGuid();  //FromToken
+            course.UserId = identityService.UserId; 
             course.CreateTime = DateTime.Now;
 
             course.Feature = new Feature
             {
                 Duration = 0, // Calculate by video
                 Rate = 0,
-                EducatorFullName = "Default Educator" //FromToken
+                EducatorFullName = identityService.UserName
             };
             
 
@@ -54,8 +56,7 @@ namespace Microservice_Net9_.Catalog.Api.Features.Courses.Create
                     var uploadCoursePictureCommand = new UploadCoursePictureCommand(course.Id, pictureAsByteArray, request.Picture.FileName);
 
                     await publishEndpoint.Publish(uploadCoursePictureCommand, cancellationToken);
-                }
-                ;
+                };
 
             }
 

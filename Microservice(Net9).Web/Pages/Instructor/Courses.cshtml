@@ -17,10 +17,10 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model.Model.Courses.Any())
+        @if (Model.ViewModel.Courses.Any())
         {
             var index = 1;
-            foreach (var course in Model.Model.Courses)
+            foreach (var course in Model.ViewModel.Courses)
             {
                 <tr>
                     <th scope="row">@index</th>

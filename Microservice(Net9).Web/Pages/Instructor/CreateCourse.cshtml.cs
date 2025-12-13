@@ -31,7 +31,7 @@ namespace Microservice_Net9_.Web.Pages.Instructor
                 //TODO: redirect
             }
 
-            return RedirectToPage("Course");
+            return RedirectToPage("Courses");
         }
     }
 }

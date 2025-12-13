@@ -57,7 +57,8 @@ namespace Microservice_Net9_.Web.Services
 
         public async Task<ServiceResult<CourseListViewModel>> GetCoursesByUserIdAsync()
         {
-            var response = await catalogRefitService.GetCoursesByUserIdAsync(userService.UserId);
+            var userId = userService.UserId;
+            var response = await catalogRefitService.GetCoursesByUserIdAsync(userId);
 
             if (!response.IsSuccessStatusCode)
             {

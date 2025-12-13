@@ -1,53 +1,48 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
+﻿#region
+
 using System.Security.Claims;
-using System.Text;
 
-namespace Microservice_Net9_.Web.Services
+#endregion
+
+namespace Microservice_Net9_.Web.Services;
+
+public class UserService(IHttpContextAccessor httpContextAccessor)
 {
-    public class UserService(IHttpContextAccessor httpContextAccessor)
+    public Guid UserId
     {
-        public Guid UserId
+        get
         {
-            get
-            {
-                if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
-                {
-                    throw new UnauthorizedAccessException("User is not authenticated.");
-                }
+            if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
+                throw new UnauthorizedAccessException("User is not authenticated.");
 
-                return Guid.Parse(httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c => c.Type == "sub")!.Value!);
-            }
+            return Guid.Parse(
+                httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c =>
+                    c.Type == "sub")!.Value!);
         }
-        
-        public string UserName
-        {
-            get
-            {
-                if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
-                {
-                    throw new UnauthorizedAccessException("User is not authenticated.");
-                }
+    }
 
-               return  httpContextAccessor.HttpContext.User.Identity.Name!;
-            }
+    public string UserName
+    {
+        get
+        {
+            if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
+                throw new UnauthorizedAccessException("User is not authenticated.");
+
+            return httpContextAccessor.HttpContext!.User.Identity!.Name!;
         }
+    }
 
-        public List<string> Roles
+    public List<string> Roles
+    {
+        get
         {
-            get
-            {
-                if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
-                {
-                    throw new UnauthorizedAccessException("User is not authenticated.");
-                }
+            if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
+                throw new UnauthorizedAccessException("User is not authenticated.");
 
-                return httpContextAccessor.HttpContext.User.Claims
-                    .Where(c => c.Type == ClaimTypes.Role)
-                    .Select(c => c.Value)
-                    .ToList();
-            }
+
+            return httpContextAccessor.HttpContext!.User.Claims.Where(x => x.Type == ClaimTypes.Role)
+                .Select(x => x.Value!)
+                .ToList();
         }
     }
 }

@@ -6,9 +6,9 @@ namespace Microservice_Net9_.Web.Pages.Instructor
 {
     public class CoursesModel(CatalogService catalogService) : PageModel
     {
-        public CourseListViewModel Model { get; set; }
+        public CourseListViewModel ViewModel { get; set; }
 
-        public async void OnGetAsync()
+        public async Task OnGetAsync()
         {
             var result = await catalogService.GetCoursesByUserIdAsync();
             if (result.isFail)
@@ -17,7 +17,7 @@ namespace Microservice_Net9_.Web.Pages.Instructor
                 //ModelState.AddModelError(null, categoriesResult.Fail.Title);
 
             }
-            Model = result.Data!;
+            ViewModel = result.Data!;
         }
     }
 }
