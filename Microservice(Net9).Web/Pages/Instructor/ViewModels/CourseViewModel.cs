@@ -5,7 +5,7 @@ public record CourseViewModel(
     string Description,
     decimal Price,
     string ImageUrl,
-    string Created,
+    //string CreateTime,
     string EducatorFullName,
     string CategoryName,
     int Duration,
@@ -17,3 +17,4 @@ public record CourseViewModel(
         return Description.Substring(0, maxLength) + "...";
     }
 }
+

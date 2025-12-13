@@ -53,5 +53,33 @@ namespace Microservice_Net9_.Web.Services
             return ServiceResult.Success();
         }
 
+        public async Task<ServiceResult<CourseListViewModel>> GetCoursesByUserIdAsync(Guid userId)
+        {
+            var response = await catalogRefitService.GetCoursesByUserIdAsync(userId);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
+                logger.LogError("Error occured while fetching courses by userId");
+
+                return ServiceResult<CourseListViewModel>.Error("Fail to retrieve categories. Please try again later.");
+            }
+
+            var courses = response.Content!.Courses;
+            var courseModels = courses.Select(c => new CourseViewModel(
+                c.Id,
+                c.Name,
+                c.Description,
+                c.Price,
+                c.ImageUrl,
+                c.Feature.EducatorFullName,
+                c.Category.Name,
+                c.Feature.Duration,
+                c.Feature.Rate
+                )).ToList();
+
+            return ServiceResult<CourseListViewModel>.Success( new CourseListViewModel(courseModels));
+        }
+
     }
 }
