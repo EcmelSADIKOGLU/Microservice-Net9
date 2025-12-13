@@ -19,6 +19,7 @@ builder.Services.AddOptionsExt();
 builder.Services.AddHttpClient<SignUpService>();
 builder.Services.AddHttpClient<SignInService>();
 builder.Services.AddHttpClient<TokenService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<CatalogService>();
 

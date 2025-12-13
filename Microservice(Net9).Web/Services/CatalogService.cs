@@ -6,7 +6,9 @@ using System.Text.Json;
 
 namespace Microservice_Net9_.Web.Services
 {
-    public class CatalogService(ICatalogRefitService catalogRefitService, ILogger<CatalogService> logger)
+    public class CatalogService(ICatalogRefitService catalogRefitService,
+        UserService userService,
+        ILogger<CatalogService> logger)
     {
         public async Task<ServiceResult<List<CategoryViewModel>>> GetCategoriesAsync()
         {
@@ -53,9 +55,9 @@ namespace Microservice_Net9_.Web.Services
             return ServiceResult.Success();
         }
 
-        public async Task<ServiceResult<CourseListViewModel>> GetCoursesByUserIdAsync(Guid userId)
+        public async Task<ServiceResult<CourseListViewModel>> GetCoursesByUserIdAsync()
         {
-            var response = await catalogRefitService.GetCoursesByUserIdAsync(userId);
+            var response = await catalogRefitService.GetCoursesByUserIdAsync(userService.UserId);
 
             if (!response.IsSuccessStatusCode)
             {
