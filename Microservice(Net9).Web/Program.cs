@@ -1,8 +1,8 @@
 using Microservice_Net9_.Web.DelegateHandlers;
 using Microservice_Net9_.Web.Extensions;
+using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Pages.Auth.SignIn;
 using Microservice_Net9_.Web.Pages.Auth.SignUp;
-using Microservice_Net9_.Web.Pages.Options;
 using Microservice_Net9_.Web.Services;
 using Microservice_Net9_.Web.Services.Refit;
 using Microsoft.AspNetCore.Authentication.Cookies;

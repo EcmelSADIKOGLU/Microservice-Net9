@@ -1,4 +1,4 @@
-﻿using Microservice_Net9_.Web.Pages.Options;
+﻿using Microservice_Net9_.Web.Options;
 using Microsoft.Extensions.Options;
 
 namespace Microservice_Net9_.Web.Extensions

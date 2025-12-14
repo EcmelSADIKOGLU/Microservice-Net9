@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityModel.Client;
-using Microservice_Net9_.Web.Pages.Options;
+using Microservice_Net9_.Web.Options;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;

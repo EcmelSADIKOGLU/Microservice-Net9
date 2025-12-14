@@ -1,6 +1,6 @@
 ﻿using Duende.IdentityModel.Client;
+using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Pages.Auth.SignUp;
-using Microservice_Net9_.Web.Pages.Options;
 using Microservice_Net9_.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

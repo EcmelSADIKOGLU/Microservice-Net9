@@ -1,6 +1,6 @@
 ﻿
 using Duende.IdentityModel.Client;
-using Microservice_Net9_.Web.Pages.Options;
+using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Services;
 using Microsoft.Extensions.Logging;
 using System.Net;

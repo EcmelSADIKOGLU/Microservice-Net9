@@ -1,5 +1,5 @@
 ﻿using Duende.IdentityModel.Client;
-using Microservice_Net9_.Web.Pages.Options;
+using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
