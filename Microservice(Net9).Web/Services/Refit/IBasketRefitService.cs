@@ -8,5 +8,8 @@ namespace Microservice_Net9_.Web.Services.Refit
     {
         [Get("/api/v1/baskets/user")]
         Task<ApiResponse<BasketDto>> GetBasketAsync();
+
+        [Post("/api/v1/baskets/item")]
+        Task<ApiResponse<object>> AddBasketItemAsync(AddBasketItemRequest addBasketItemRequest);
     }
 }

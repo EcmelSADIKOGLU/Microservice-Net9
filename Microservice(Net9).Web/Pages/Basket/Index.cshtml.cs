@@ -18,5 +18,15 @@ namespace Microservice_Net9_.Web.Pages.Basket
             Basket = response.Data!;
             return Page();
         }
+
+        public async Task<IActionResult> OnGetAddItemToBasketAsync(Guid id)
+        {
+
+            //if (coursesAsResult.isFail) return ErrorPage(coursesAsResult);
+
+            //CourseListViewModel = coursesAsResult.Data!;
+
+            return Page();
+        }
     }
 }
