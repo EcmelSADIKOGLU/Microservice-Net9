@@ -1,4 +1,4 @@
-﻿using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
+using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
 using Microservice_Net9_.Web.Services.Refit;
 using Microsoft.AspNetCore.Mvc;
 using Refit;
@@ -75,6 +75,7 @@ namespace Microservice_Net9_.Web.Services
                 c.Description,
                 c.Price,
                 c.ImageUrl,
+                c.CreateTime.ToString("d"),
                 c.Feature.EducatorFullName,
                 c.Category.Name,
                 c.Feature.Duration,
@@ -82,6 +83,35 @@ namespace Microservice_Net9_.Web.Services
                 )).ToList();
 
             return ServiceResult<CourseListViewModel>.Success( new CourseListViewModel(courseModels));
+        }
+
+        public async Task<ServiceResult<CourseListViewModel>> GetCoursesAsync()
+        {
+            var response = await catalogRefitService.GetCoursesAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error!.Content!);
+                logger.LogError("Error occured while fetching courses by userId");
+
+                return ServiceResult<CourseListViewModel>.Error("Fail to retrieve categories. Please try again later.");
+            }
+
+            var courses = response.Content!.Courses;
+            var courseModels = courses.Select(c => new CourseViewModel(
+                c.Id,
+                c.Name,
+                c.Description,
+                c.Price,
+                c.ImageUrl,
+                c.CreateTime.ToString("d"),
+                c.Feature.EducatorFullName,
+                c.Category.Name,
+                c.Feature.Duration,
+                c.Feature.Rate
+                )).ToList();
+
+            return ServiceResult<CourseListViewModel>.Success(new CourseListViewModel(courseModels));
         }
 
         public async Task<ServiceResult> DeleteCourseAsync(Guid courseId)

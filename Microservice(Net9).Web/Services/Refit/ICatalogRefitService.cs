@@ -1,4 +1,4 @@
-﻿using Microservice_Net9_.Web.Pages.Instructor.Dtos;
+using Microservice_Net9_.Web.Pages.Instructor.Dtos;
 using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
 using Microservice_Net9_.Web.Services.ResponseDtos;
 using Refit;
@@ -13,7 +13,10 @@ namespace Microservice_Net9_.Web.Services.Refit
         [Get("/api/v1/courses/GetAllCoursesByUserId/{userId}")]
         Task<ApiResponse<GetAllCoursesResponseDto>> GetCoursesByUserIdAsync(Guid userId);
 
-        
+        [Get("/api/v1/courses")]
+        Task<ApiResponse<GetAllCoursesResponseDto>> GetCoursesAsync();
+
+
 
         [Multipart]
         [Post("/api/v1/courses")]

@@ -1,11 +1,11 @@
-﻿namespace Microservice_Net9_.Web.Pages.Instructor.ViewModels;
+namespace Microservice_Net9_.Web.Pages.Instructor.ViewModels;
 public record CourseViewModel(
     Guid Id,
     string Name,
     string Description,
     decimal Price,
     string ImageUrl,
-    //string CreateTime,
+    string CreateTime,
     string EducatorFullName,
     string CategoryName,
     int Duration,
