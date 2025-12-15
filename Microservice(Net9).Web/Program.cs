@@ -1,4 +1,5 @@
 using Microservice_Net9_.Web.DelegateHandlers;
+using Microservice_Net9_.Web.ExceptionHandlers;
 using Microservice_Net9_.Web.Extensions;
 using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Pages.Auth.SignIn;
@@ -28,6 +29,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+
+builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
 
 builder.Services.AddRefitClient<ICatalogRefitService>().ConfigureHttpClient(configure =>
 {
