@@ -1,6 +1,6 @@
 using Microservice_Net9_.Web.Pages.Instructor.Dtos;
 using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
-using Microservice_Net9_.Web.Services.ResponseDtos;
+using Microservice_Net9_.Web.Services.ResponseDtos.Catalog;
 using Refit;
 
 namespace Microservice_Net9_.Web.Services.Refit

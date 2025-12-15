@@ -1,12 +1,22 @@
+using Microservice_Net9_.Web.PageModels;
+using Microservice_Net9_.Web.Pages.Basket.ViewModels;
+using Microservice_Net9_.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Microservice_Net9_.Web.Pages.Basket
 {
-    public class IndexModel : PageModel
+    public class IndexModel(BasketService basketservice) : BasePageModel
     {
-        public void OnGet()
+        public BasketPageViewModel Basket { get; set; }
+        public async Task<IActionResult> OnGetAsync()
         {
+            var response = await basketservice.GetBasketAsync();
+
+            if (response.isFail) return ErrorPage(response, "Index");
+
+            Basket = response.Data!;
+            return Page();
         }
     }
 }
