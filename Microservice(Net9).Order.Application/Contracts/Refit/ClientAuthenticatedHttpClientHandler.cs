@@ -32,7 +32,7 @@ namespace Microservice_Net9_.Order.Application.Contracts.Refit
                 var client = httpClientFactory.CreateClient("IdentityClient");
 
                 client.BaseAddress = new Uri(identityOption.Address);
-                var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
+                var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest, cancellationToken);
 
                 if (discoveryResponse.IsError)
                 {

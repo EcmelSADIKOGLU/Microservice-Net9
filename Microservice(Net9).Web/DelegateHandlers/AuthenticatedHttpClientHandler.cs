@@ -1,12 +1,14 @@
-﻿using Duende.IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microservice_Net9_.Web.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 
 namespace Microservice_Net9_.Web.DelegateHandlers
@@ -53,6 +55,20 @@ namespace Microservice_Net9_.Web.DelegateHandlers
             }
 
             //TODO: Create Cookie
+            var authenticationProperties = tokenService.CreateAuthenticationProperties(tokenResponse);
+            var userClaim = httpContextAccessor.HttpContext.User.Claims;
+
+            var claimIdentity = new ClaimsIdentity(userClaim, CookieAuthenticationDefaults.AuthenticationScheme,
+                ClaimTypes.Name, ClaimTypes.Role);
+
+
+            var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
+
+
+            await httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                claimsPrincipal, authenticationProperties);
+
+            //TODO: Control and understand
 
             request.SetBearerToken(acsessToken);
 

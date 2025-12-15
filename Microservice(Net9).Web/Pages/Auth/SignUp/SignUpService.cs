@@ -21,7 +21,6 @@ namespace Microservice_Net9_.Web.Pages.Auth.SignUp
                 }
             };
 
-            // var client = httpClientFactory.CreateClient("IdentityClient");
             client.BaseAddress = new Uri(identityOption.Address);
 
             var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
