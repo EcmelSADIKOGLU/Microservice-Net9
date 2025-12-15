@@ -66,7 +66,7 @@ namespace Microservice_Net9_.Shared.Extensions
                     policy.RequireClaim(ClaimTypes.Email);
                 });
 
-                options.AddPolicy("Instructor", policy =>
+                options.AddPolicy("instructor", policy =>
                 {
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser();

@@ -1,4 +1,4 @@
-﻿using Duende.IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microservice_Net9_.Web.Options;
 using Microservice_Net9_.Web.Pages.Auth.SignUp;
 using Microservice_Net9_.Web.Services;

@@ -1,12 +1,13 @@
 using Microservice_Net9_.Web.Pages.Instructor.ViewModels;
 using Microservice_Net9_.Web.Services.Refit;
 using Microsoft.AspNetCore.Mvc;
-using Refit;
 using System.Text.Json;
+using _StreamPart = Refit.StreamPart;
 
 namespace Microservice_Net9_.Web.Services
 {
-    public class CatalogService(ICatalogRefitService catalogRefitService,
+    public class CatalogService(
+        ICatalogRefitService catalogRefitService,
         UserService userService,
         ILogger<CatalogService> logger)
     {
@@ -16,7 +17,7 @@ namespace Microservice_Net9_.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occured while fetching categories");
 
                 return ServiceResult<List<CategoryViewModel>>.Error("Fail to retrieve categories. Please try again later.");
@@ -29,12 +30,12 @@ namespace Microservice_Net9_.Web.Services
 
         public async Task<ServiceResult> CreateCourseAsync(CreateCourseViewModel model)
         {
-            StreamPart? pictureStreamPart = null;
+            _StreamPart? pictureStreamPart = null;
             await using var stream = model.PictureFormFile?.OpenReadStream();
 
             if (model.PictureFormFile is not null && model.PictureFormFile.Length > 0)
             {
-                pictureStreamPart = new StreamPart(stream!, model.PictureFormFile.FileName, model.PictureFormFile.ContentType);
+                pictureStreamPart = new _StreamPart(stream!, model.PictureFormFile.FileName, model.PictureFormFile.ContentType);
             }
 
             var response = await catalogRefitService.CreateCourseAsync(
@@ -46,7 +47,7 @@ namespace Microservice_Net9_.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content!);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occured while fetching categories");
 
                 return ServiceResult<List<CategoryViewModel>>.Error("Fail to retrieve categories. Please try again later.");
@@ -62,7 +63,7 @@ namespace Microservice_Net9_.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occured while fetching courses by userId");
 
                 return ServiceResult<CourseListViewModel>.Error("Fail to retrieve categories. Please try again later.");
@@ -91,7 +92,7 @@ namespace Microservice_Net9_.Web.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error!.Content!);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error!.Content!);
                 logger.LogError("Error occured while fetching courses by userId");
 
                 return ServiceResult<CourseListViewModel>.Error("Fail to retrieve categories. Please try again later.");
@@ -119,7 +120,7 @@ namespace Microservice_Net9_.Web.Services
             var response = await catalogRefitService.DeleteCourseAsync(courseId);
             if (!response.IsSuccessStatusCode)
             {
-                var problemDetails = JsonSerializer.Deserialize<Microsoft.AspNetCore.Mvc.ProblemDetails>(response.Error.Content);
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
                 logger.LogError("Error occured while deleting course");
 
                 return ServiceResult.Error("Fail to delete course. Please try again later.");
