@@ -68,7 +68,8 @@ namespace Microservice_Net9_.Web.Pages.Auth.SignIn
                 ClientSecret = identityOption.Web.ClientSecret,
                 Password = signInViewModel.Password,
                 UserName = signInViewModel.Email!,
-                Scope = "offline_access"
+                //Scope = "offline_access"
+                //TODO: Scope sorununu çöz
             };
 
             TokenResponse tokenResponse = await client.RequestPasswordTokenAsync(passwordTokenRequest);

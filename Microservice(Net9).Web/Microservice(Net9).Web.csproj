@@ -22,4 +22,8 @@
     <None Include="C:\Users\ecmel\source\repos\Microservice(Net9)\Microservice(Net9).Web\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Basket\ViewModels\" />
+  </ItemGroup>
+
 </Project>
