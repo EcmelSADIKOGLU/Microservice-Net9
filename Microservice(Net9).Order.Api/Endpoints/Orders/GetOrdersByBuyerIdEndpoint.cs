@@ -9,16 +9,16 @@ namespace Microservice_Net9_.Order.Api.Endpoints.Orders
     {
         public static RouteGroupBuilder GetOrdersByBuyerIdGroupItem(this RouteGroupBuilder group)
         {
-            group.MapGet("/user/{buyerId:guid}", async (Guid buyerId, IMediator mediator) =>
+            group.MapGet("/user", async (Guid buyerId, IMediator mediator) =>
             {
 
-                var result = await mediator.Send(new GetOrdersByBuyerIdQuery(buyerId));
+                var result = await mediator.Send(new GetOrdersByBuyerIdQuery());
                 return result.ToGenericResult();
 
             })
                 .MapToApiVersion(1, 0)
                 .WithName("GetOrdersByBuyerId")
-                .Produces<ServiceResult>(StatusCodes.Status200OK);
+                .Produces<ServiceResult<GetOrdersByBuyerIdResponse>>(StatusCodes.Status200OK);
 
             return group;
         }

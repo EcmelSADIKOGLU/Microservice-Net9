@@ -21,6 +21,7 @@ namespace Microservice_Net9_.Web.Extensions
             services.AddScoped<CatalogService>();
             services.AddScoped<BasketService>();
             services.AddScoped<DiscountService>();
+            services.AddScoped<OrderService>();
 
 
             services.AddScoped<AuthenticatedHttpClientHandler>();

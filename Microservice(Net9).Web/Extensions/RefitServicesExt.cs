@@ -37,6 +37,15 @@ namespace Microservice_Net9_.Web.Extensions
             .AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
             .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
+            services.AddRefitClient<IOrderRefitService>().ConfigureHttpClient(configure =>
+            {
+                var microserviceOption = configuration.GetRequiredSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
+
+                configure.BaseAddress = new Uri(microserviceOption!.Order.BaseAddress);
+            })
+            .AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
+            .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
+
             return services;
         }
     }
