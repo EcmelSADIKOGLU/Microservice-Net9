@@ -14,7 +14,7 @@ using System.Text;
 namespace Microservice_Net9_.Web.DelegateHandlers
 {
     // Intercept (Requestte araya giren işlemler)
-    public class AuthenticatedHttpClientHandler(IHttpContextAccessor httpContextAccessor, TokenService tokenService)
+    public class AuthenticatedHttpClientHandler1(IHttpContextAccessor httpContextAccessor, TokenService tokenService)
     : DelegatingHandler
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
@@ -71,7 +71,7 @@ namespace Microservice_Net9_.Web.DelegateHandlers
         }
     }
 
-    internal class AuthenticatedHttpClientHandler1(IHttpContextAccessor httpContextAccessor, TokenService tokenService) : DelegatingHandler
+    internal class AuthenticatedHttpClientHandler(IHttpContextAccessor httpContextAccessor, TokenService tokenService) : DelegatingHandler
     {
         override protected async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
@@ -127,7 +127,7 @@ namespace Microservice_Net9_.Web.DelegateHandlers
 
             //TODO: Control and understand
 
-            request.SetBearerToken(acsessToken);
+            request.SetBearerToken(tokenResponse.AccessToken!);
 
 
             return await base.SendAsync(request, cancellationToken);

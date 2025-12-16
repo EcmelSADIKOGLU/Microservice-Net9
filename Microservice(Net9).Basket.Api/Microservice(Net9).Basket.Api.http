@@ -3,11 +3,11 @@
 @exampleCourseId = 08de0e39-28f4-6c4b-0015-5d362e040002
 
 
-
+### Get Basket
 GET {{baseAddress}}/api/v1/baskets/user
 Accept: application/json
-###
 
+### Add Basket Item
 Post {{baseAddress}}/api/v1/baskets/item
 Accept: application/json
 Content-Type: application/json
@@ -19,8 +19,12 @@ Content-Type: application/json
   "userId": "{{exampleUserId}}",
   "educatorFullName": "John Doe"
 }
-###
 
+### Delete Basket Item
+DELETE {{baseAddress}}/api/v1/baskets/item/{{exampleCourseId}}
+Accept: application/json
+
+### Apply Discount Coupon
 PUT {{baseAddress}}/api/v1/baskets/apply-discount-coupon
 Accept: application/json
 Content-Type: application/json
@@ -28,14 +32,11 @@ Content-Type: application/json
   "couponCode": "1234DNK3O7",
   "discountRate": 0.2
 }
-###
 
-DELETE {{baseAddress}}/api/v1/baskets/item/{{exampleCourseId}}
-Accept: application/json
-###
-
+### Clear Discount Coupon
 DELETE {{baseAddress}}/api/v1/baskets/clear-discount-coupon
 Accept: application/json
+
 ###
 
 

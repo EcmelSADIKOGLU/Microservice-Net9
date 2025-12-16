@@ -10,6 +10,18 @@ namespace Microservice_Net9_.Web.Services
         IBasketRefitService basketRefitService,
         ILogger<BasketService> logger)
     {
+
+        public async Task<ServiceResult> DeleteBasketItemAsync(Guid courseId)
+        {
+            var response = await basketRefitService.DeleteBasketItemAsync(courseId);
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError(response.Error.Message);
+                return ServiceResult.Error("An error occurred while deleting item from basket");
+            }
+            return ServiceResult.Success();
+        }
+
         public async Task<ServiceResult<BasketPageViewModel>> GetBasketAsync()
         {
             var response = await basketRefitService.GetBasketAsync();

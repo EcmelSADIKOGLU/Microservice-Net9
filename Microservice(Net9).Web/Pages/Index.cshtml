@@ -43,11 +43,11 @@
                         <small class="text-muted">Point : <strong>@course.Rating</strong> | Süre: <strong>@course.Duration</strong> saat</small>
 
                         <br>
-                        <a asp-page="/Courses/Detail" asp-route-id="@course.Id" class="btn btn-primary mt-2">Show Detail</a>
+                        <a asp-page="/Courses/Detail" asp-route-courseId="@course.Id" class="btn btn-primary mt-2">Show Detail</a>
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a asp-page="/Basket/Index" asp-page-handler="AddItemToBasket" asp-route-id="@course.Id" class="btn btn-danger mt-2">Add To Basket</a>
+                            <a asp-page="/Basket/Index" asp-page-handler="AddItemToBasket" asp-route-courseId="@course.Id" class="btn btn-danger mt-2">Add To Basket</a>
                         }
                     </div>
                 </div>

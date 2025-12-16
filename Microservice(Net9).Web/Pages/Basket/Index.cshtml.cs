@@ -20,9 +20,9 @@ namespace Microservice_Net9_.Web.Pages.Basket
             return Page();
         }
 
-        public async Task<IActionResult> OnGetAddItemToBasketAsync(Guid id)
+        public async Task<IActionResult> OnGetAddItemToBasketAsync(Guid courseId)
         {
-            var courseResponse = await catalogService.GetCourseByIdAsync(id);
+            var courseResponse = await catalogService.GetCourseByIdAsync(courseId);
             
             if (courseResponse.isFail) return ErrorPage(courseResponse, "Index");
 
@@ -34,6 +34,14 @@ namespace Microservice_Net9_.Web.Pages.Basket
             var response = await basketService.AddBasketItemAsync(createOrUpdateBasket);
 
             return response.isFail ? ErrorPage(response, "Index") : SuccessPage("course added to basket", "Index");
+        }
+
+        public async Task<IActionResult> OnGetDeleteItemFromBasketAsync(Guid courseId)
+        {
+
+            var response = await basketService.DeleteBasketItemAsync(courseId);
+
+            return response.isFail ? ErrorPage(response, "Index") : SuccessPage("course deleted from basket", "Index");
         }
     }
 }
