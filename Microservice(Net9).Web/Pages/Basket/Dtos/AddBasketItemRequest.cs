@@ -5,6 +5,5 @@ public record AddBasketItemRequest(
     string CourseName,
     decimal CoursePrice,
     string? ImageUrl,
-    Guid UserId,
     string EducatorFullName
     );

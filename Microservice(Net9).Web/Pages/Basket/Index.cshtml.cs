@@ -1,4 +1,5 @@
 using Microservice_Net9_.Web.PageModels;
+using Microservice_Net9_.Web.Pages.Basket.Dtos;
 using Microservice_Net9_.Web.Pages.Basket.ViewModels;
 using Microservice_Net9_.Web.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -6,12 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Microservice_Net9_.Web.Pages.Basket
 {
-    public class IndexModel(BasketService basketservice) : BasePageModel
+    public class IndexModel(BasketService basketService, CatalogService catalogService) : BasePageModel
     {
         public BasketPageViewModel Basket { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            var response = await basketservice.GetBasketAsync();
+            var response = await basketService.GetBasketAsync();
 
             if (response.isFail) return ErrorPage(response, "Index");
 
@@ -21,12 +22,18 @@ namespace Microservice_Net9_.Web.Pages.Basket
 
         public async Task<IActionResult> OnGetAddItemToBasketAsync(Guid id)
         {
-            //TODO: Need GetCourse();
-            //if (coursesAsResult.isFail) return ErrorPage(coursesAsResult);
+            var courseResponse = await catalogService.GetCourseByIdAsync(id);
+            
+            if (courseResponse.isFail) return ErrorPage(courseResponse, "Index");
 
-            //CourseListViewModel = coursesAsResult.Data!;
+            var courseDto = courseResponse.Data!;
 
-            return Page();
+            var createOrUpdateBasket = new AddBasketItemRequest(courseDto.Id, courseDto.Name,
+                courseDto.Price, courseDto.ImageUrl, courseDto.EducatorFullName);
+
+            var response = await basketService.AddBasketItemAsync(createOrUpdateBasket);
+
+            return response.isFail ? ErrorPage(response, "Index") : SuccessPage("course added to basket", "Index");
         }
     }
 }

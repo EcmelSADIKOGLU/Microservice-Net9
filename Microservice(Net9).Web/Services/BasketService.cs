@@ -39,6 +39,18 @@ namespace Microservice_Net9_.Web.Services
         }
 
         //TODO: GetCourse Yapmam Lazım
-        //public async Task<ServiceResult> AddBasketItemAsync()
+        public async Task<ServiceResult> AddBasketItemAsync(AddBasketItemRequest request)
+        {
+
+            var response = await basketRefitService.AddBasketItemAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError(response.Error.Message);
+                return ServiceResult.Error("An error occurred while adding item to basket");
+            }
+
+            return ServiceResult.Success();
+        }
     }
 }

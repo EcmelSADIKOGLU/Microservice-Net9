@@ -16,8 +16,6 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
             RuleFor(x => x.CoursePrice)
                 .GreaterThan(0).WithMessage("{PropertyName} must be greater than zero.");
             
-            RuleFor(x => x.UserId)
-                .NotEmpty().WithMessage("{PropertyName} is required.");
 
             RuleFor(x => x.EducatorFullName)
                 .NotEmpty().WithMessage("{PropertyName} is required.");

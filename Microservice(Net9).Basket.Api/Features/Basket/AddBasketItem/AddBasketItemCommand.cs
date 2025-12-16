@@ -5,7 +5,6 @@
         string CourseName,
         decimal CoursePrice,
         string? ImageUrl,
-        Guid UserId,
         string EducatorFullName
         ):IRequestByServiceResult;
 }

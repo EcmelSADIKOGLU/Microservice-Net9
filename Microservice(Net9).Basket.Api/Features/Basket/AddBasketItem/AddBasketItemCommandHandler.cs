@@ -13,7 +13,7 @@ namespace Microservice_Net9_.Basket.Api.Features.Basket.AddBasketItem
                 CourseName: request.CourseName,
                 CoursePrice: request.CoursePrice,
                 ImageUrl: request.ImageUrl,
-                UserId: request.UserId,
+                UserId: identityService.UserId,
                 EducatorFullName: request.EducatorFullName,
                 PriceByApplyDiscount: null
             );
