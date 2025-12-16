@@ -1,6 +1,7 @@
 @baseAddress = http://localhost:5237
 @code = Deneme1239
 
+### Get Discount By Code
 Get {{baseAddress}}/api/v1/discounts/Deneme123sssda
 Accept: application/json
 
