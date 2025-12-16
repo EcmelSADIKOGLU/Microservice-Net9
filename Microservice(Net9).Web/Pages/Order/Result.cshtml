@@ -1,0 +1,23 @@
+@page
+@model Microservice_Net9_.Web.Pages.Order.ResultModel
+@{
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2 class="card-title text-success">
+                        <i class="fa-solid fa-check-circle"></i> Payment Successful!
+                    </h2>
+                    <p class="card-text mt-3">
+                        <i class="fa-solid fa-thumbs-up"></i> Your payment has been successfully completed.
+                    </p>
+                    <a asp-action="/Customer/Courses" class="btn btn-primary mt-4">
+                        <i class="fa-solid fa-play-circle"></i> Go to courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
