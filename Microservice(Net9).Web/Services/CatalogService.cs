@@ -11,6 +11,34 @@ namespace Microservice_Net9_.Web.Services
         UserService userService,
         ILogger<CatalogService> logger)
     {
+
+        public async Task<ServiceResult<CourseViewModel>> GetCourseByIdAsync(Guid courseId)
+        {
+            var response = await catalogRefitService.GetCourseByIdAsync(courseId);
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(response.Error.Content!);
+                logger.LogError("Error occured while fetching categories");
+
+                return ServiceResult<CourseViewModel>.Error("Fail to retrieve the category. Please try again later.");
+            }
+            var courseDto = response.Content!;
+            var courseModel = new CourseViewModel(
+                courseDto.Id,
+                courseDto.Name,
+                courseDto.Description,
+                courseDto.Price,
+                courseDto.ImageUrl,
+                courseDto.CreateTime.ToString("d"),
+                courseDto.Feature.EducatorFullName,
+                courseDto.Category.Name,
+                courseDto.Feature.Duration,
+                courseDto.Feature.Rate
+                );
+
+            return ServiceResult<CourseViewModel>.Success(courseModel);
+
+        }
         public async Task<ServiceResult<List<CategoryViewModel>>> GetCategoriesAsync()
         {
             var response = await catalogRefitService.GetCategoriesAsync();

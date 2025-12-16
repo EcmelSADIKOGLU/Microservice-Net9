@@ -1,4 +1,4 @@
-﻿using Duende.IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microservice_Net9_.Web.Options;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +16,33 @@ namespace Microservice_Net9_.Web.Services
             JwtSecurityToken jwtSecurityToken = handler.ReadJwtToken(accessToken);
 
             return jwtSecurityToken.Claims.ToList();
+        }
+
+        public async Task<TokenResponse> GetTokensByRefreshToken(string refreshToken)
+        {
+            var discoveryRequest = new DiscoveryDocumentRequest
+            {
+                Address = identityOption.Address,
+                Policy = { RequireHttps = false }
+            };
+            var client = httpClientFactory.CreateClient("GetTokensByRefreshToken");
+            client.BaseAddress = new Uri(identityOption.Address);
+            var discoveryResponse = await client.GetDiscoveryDocumentAsync(discoveryRequest);
+
+            if (discoveryResponse.IsError)
+                throw new Exception($"Discovery document request failed: {discoveryResponse.Error}");
+
+
+            var tokenResponse = await client.RequestRefreshTokenAsync(new RefreshTokenRequest
+            {
+                Address = discoveryResponse.TokenEndpoint,
+                ClientId = identityOption.Web.ClientId,
+                ClientSecret = identityOption.Web.ClientSecret,
+                RefreshToken = refreshToken
+            });
+
+
+            return tokenResponse;
         }
 
         public AuthenticationProperties CreateAuthenticationProperties(TokenResponse tokenResponse)

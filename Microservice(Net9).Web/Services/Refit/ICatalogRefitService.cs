@@ -16,6 +16,9 @@ namespace Microservice_Net9_.Web.Services.Refit
         [Get("/api/v1/courses")]
         Task<ApiResponse<GetAllCoursesResponseDto>> GetCoursesAsync();
 
+        [Get("/api/v1/courses/{courseId}")]
+        Task<ApiResponse<CourseDto>> GetCourseByIdAsync(Guid courseId);
+
 
 
         [Multipart]

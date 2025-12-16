@@ -4,7 +4,7 @@ public record CourseViewModel(
     string Name,
     string Description,
     decimal Price,
-    string ImageUrl,
+    string? ImageUrl,
     string CreateTime,
     string EducatorFullName,
     string CategoryName,

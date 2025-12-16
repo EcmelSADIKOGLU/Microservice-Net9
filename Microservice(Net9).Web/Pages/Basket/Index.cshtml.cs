@@ -21,7 +21,7 @@ namespace Microservice_Net9_.Web.Pages.Basket
 
         public async Task<IActionResult> OnGetAddItemToBasketAsync(Guid id)
         {
-
+            //TODO: Need GetCourse();
             //if (coursesAsResult.isFail) return ErrorPage(coursesAsResult);
 
             //CourseListViewModel = coursesAsResult.Data!;
