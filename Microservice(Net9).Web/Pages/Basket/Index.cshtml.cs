@@ -54,5 +54,11 @@ namespace Microservice_Net9_.Web.Pages.Basket
 
             return response.isFail ? ErrorPage(response, "Index") : SuccessPage("discount applied to basket", "Index");
         }
+
+        public async Task<IActionResult> OnGetRemoveDiscountAsync()
+        {
+            var response = await basketService.DeleteDiscountCouponAsync();
+            return response.isFail ? ErrorPage(response, "Index") : SuccessPage("discount removed from basket", "Index");
+        }
     }
 }

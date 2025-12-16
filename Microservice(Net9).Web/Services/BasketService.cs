@@ -13,6 +13,18 @@ namespace Microservice_Net9_.Web.Services
         ILogger<BasketService> logger,
         UserService userService)
     {
+
+        public async Task<ServiceResult> DeleteDiscountCouponAsync()
+        {
+            var response = await basketRefitService.ClearDiscountCouponAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError(response.Error.Message);
+                return ServiceResult.Error("An error occurred while clearing discount from basket");
+            }
+            return ServiceResult.Success();
+        }
+
         public async Task<ServiceResult> ApplyDiscountCouponAsync(DiscountDto discountDto)
         {
 
