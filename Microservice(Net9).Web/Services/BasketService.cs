@@ -1,3 +1,5 @@
+using Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon;
+using Microservice_Net9_.Discount.Api.Features.Discounts;
 using Microservice_Net9_.Web.Pages.Basket.Dtos;
 using Microservice_Net9_.Web.Pages.Basket.ViewModels;
 using Microservice_Net9_.Web.Services.Refit;
@@ -8,8 +10,32 @@ namespace Microservice_Net9_.Web.Services
 {
     public class BasketService(
         IBasketRefitService basketRefitService,
-        ILogger<BasketService> logger)
+        ILogger<BasketService> logger,
+        UserService userService)
     {
+        public async Task<ServiceResult> ApplyDiscountCouponAsync(DiscountDto discountDto)
+        {
+
+            if (!(userService.UserId == discountDto.UserId))
+            {
+                return ServiceResult.Error("The coupon code has not been assigned to this user");
+            }
+            if (discountDto.ExpireTime <= DateTime.UtcNow)
+            {
+                return ServiceResult.Error("The coupon code expired");
+            }
+
+            ApplyDiscountCouponRequest request = new(discountDto.Code, discountDto.Rate);
+
+            var response = await basketRefitService.ApplyDiscountCouponAsync(request);
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError(response.Error.Message);
+                return ServiceResult.Error("An error occurred while appling discount to basket");
+            }
+            return ServiceResult.Success();
+
+        }
 
         public async Task<ServiceResult> DeleteBasketItemAsync(Guid courseId)
         {
