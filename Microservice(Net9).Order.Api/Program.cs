@@ -43,6 +43,13 @@ builder.Services.AddHostedService<CheckPaymentStatusOrderBackgrounService>();
 
 var app = builder.Build();
 
+// Apply pending migrations automatically
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await dbContext.Database.MigrateAsync();
+}
+
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
 
 if (app.Environment.IsDevelopment())

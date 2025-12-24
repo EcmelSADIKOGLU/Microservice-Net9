@@ -74,10 +74,8 @@ services:
 
   microservicenet9.gateway:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production # appsettings.Production.json
       - ASPNETCORE_HTTP_PORTS=8080
-      - IdentityOption:Address=http://keycloak:8080/realms/microserviceTenant
-      - IdentityOption:Issuer=http://keycloak:8080/realms/microserviceTenant
     ports:
       - "8080"
     restart: always
@@ -92,7 +90,7 @@ services:
       - IdentityOption:Address=http://keycloak:8080/realms/microserviceTenant
       - IdentityOption:Issuer=http://keycloak:8080/realms/microserviceTenant
       - AddressUrlOption:PaymentUrl=http://microservicenet9.payment.api:8080
-      - ConnectionStrings:SqlServer=Server=sqlserver.db.order,1433;Database=OrderDb;User=Sa;Password=Password12*;Trusted_Connection=False;TrustServerCertificate=True;Integrated Security=False
+      - ConnectionStrings:SqlServer=Server=sqlserver.db.order,1433;Database=OrderDockerDb;User=Sa;Password=Password12*;Trusted_Connection=False;TrustServerCertificate=True;Integrated Security=False
     ports:
       - "8080"
     depends_on:
