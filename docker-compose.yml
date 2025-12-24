@@ -129,6 +129,54 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+  microservicenet9.basket.api:
+    image: microservicenet9basketapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Basket.Api/Dockerfile
+
+  microservicenet9.catalog.api:
+    image: microservicenet9catalogapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Catalog.Api/Dockerfile
+
+  microservicenet9.discount.api:
+    image: microservicenet9discountapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Discount.Api/Dockerfile
+
+  microservicenet9.file.api:
+    image: microservicenet9fileapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).File.Api/Dockerfile
+
+  microservicenet9.gateway:
+    image: microservicenet9gateway
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Gateway/Dockerfile
+
+  microservicenet9.order.api:
+    image: microservicenet9orderapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Order.Api/Dockerfile
+
+  microservicenet9.payment.api:
+    image: microservicenet9paymentapi
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Payment.Api/Dockerfile
+
+  microservicenet9.web:
+    image: microservicenet9web
+    build:
+      context: .
+      dockerfile: Microservice(Net9).Web/Dockerfile
+
 volumes:
   mongo.db.catalog.volume:
   mongo.db.discount.volume:
@@ -137,3 +185,11 @@ volumes:
   posrgres.db.keycloak.volume:
   posrgres.db.keycloak.ui.volume:
   rabbitmq_data:
+
+
+
+
+
+
+
+
