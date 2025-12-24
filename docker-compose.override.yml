@@ -11,6 +11,10 @@ services:
       - ConnectionStrings:Redis=redis.db.basket:6379,password=Password12
     ports:
       - "8080"
+    depends_on:
+      - redis.db.basket
+      - rabbitmq
+    restart: always
 
 
   microservicenet9.catalog.api:
@@ -24,6 +28,10 @@ services:
       - MongoOptions:ConnectionString=mongodb://myuser:Password12@mongo.db.catalog:27017
     ports:
       - "8080"
+    depends_on:
+      - mongo.db.catalog
+      - rabbitmq
+    restart: always
 
 
   microservicenet9.discount.api:
@@ -44,6 +52,10 @@ services:
     #   - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     #   - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
     #   - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - mongo.db.discount
+      - rabbitmq
+    restart: always
 
   microservicenet9.file.api:
     environment:
@@ -55,6 +67,9 @@ services:
       - IdentityOption:Issuer=http://keycloak:8080/realms/microserviceTenant
     ports:
       - "8080"
+    depends_on:
+      - rabbitmq
+    restart: always
 
 
   microservicenet9.gateway:
@@ -65,6 +80,7 @@ services:
       - IdentityOption:Issuer=http://keycloak:8080/realms/microserviceTenant
     ports:
       - "8080"
+    restart: always
 
 
   microservicenet9.order.api:
@@ -79,6 +95,10 @@ services:
       - ConnectionStrings:SqlServer=Server=sqlserver.db.order,1433;Database=OrderDb;User=Sa;Password=Password12*;Trusted_Connection=False;TrustServerCertificate=True;Integrated Security=False
     ports:
       - "8080"
+    depends_on:
+      - sqlserver.db.order
+      - rabbitmq
+    restart: always
 
 
   microservicenet9.payment.api:
@@ -91,7 +111,9 @@ services:
       - IdentityOption:Issuer=http://keycloak:8080/realms/microserviceTenant
     ports:
       - "8080"
-
+    depends_on:
+      - rabbitmq
+    restart: always
 
   microservicenet9.web:
     environment:
@@ -108,4 +130,5 @@ services:
       - MicroserviceOption:Order:BaseAddress=http://microservicenet9.order.api:8080
     ports:
       - "5050:8080" # Expose web app on port 5050
+    restart: always
 

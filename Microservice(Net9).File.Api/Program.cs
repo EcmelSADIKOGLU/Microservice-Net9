@@ -17,7 +17,10 @@ builder.Services.AddVersioningExt();
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
 builder.Services.AddMasstransitExt(builder.Configuration);
 
-builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+var webRoot = Path.Combine(builder.Environment.ContentRootPath, "wwwroot");
+Directory.CreateDirectory(webRoot);
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(webRoot));
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 

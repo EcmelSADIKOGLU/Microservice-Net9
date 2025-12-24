@@ -27,5 +27,6 @@ RUN dotnet publish "./Microservice(Net9).File.Api.csproj" -c $BUILD_CONFIGURATIO
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
+RUN mkdir -p /app/wwwroot
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Microservice(Net9).File.Api.dll"]
