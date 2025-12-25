@@ -45,7 +45,7 @@
                         <br>
                         <a asp-page="/Courses/Detail" asp-route-courseId="@course.Id" class="btn btn-primary mt-2">Show Detail</a>
 
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity?.IsAuthenticated == true)
                         {
                             <a asp-page="/Basket/Index" asp-page-handler="AddItemToBasket" asp-route-courseId="@course.Id" class="btn btn-danger mt-2">Add To Basket</a>
                         }

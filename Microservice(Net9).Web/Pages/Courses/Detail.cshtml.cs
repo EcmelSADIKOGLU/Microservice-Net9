@@ -8,10 +8,10 @@ namespace Microservice_Net9_.Web.Pages.Courses
 {
     public class DetailModel(CatalogService catalogService) : BasePageModel
     {
-        public CourseViewModel CourseViewModel { get; set; }
-        public async Task<IActionResult> OnGetAsync(Guid id)
+        public CourseViewModel CourseViewModel { get; set; } = CourseViewModel.Empty;
+        public async Task<IActionResult> OnGetAsync(Guid courseId)
         {
-            var response = await catalogService.GetCourseByIdAsync(id);
+            var response = await catalogService.GetCourseByIdAsync(courseId);
             if (response.isFail)
             {
                 return ErrorPage(response);

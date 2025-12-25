@@ -11,6 +11,19 @@ public record CourseViewModel(
     int Duration,
     float Rating)
 {
+    public static CourseViewModel Empty => new CourseViewModel(
+        Guid.Empty,
+        string.Empty,
+        string.Empty,
+        0,
+        null,
+        string.Empty,
+        string.Empty,
+        string.Empty,
+        0,
+        0
+        );
+
     public string TruncateDescription(int maxLength)
     {
         if (Description.Length <= maxLength) return Description;
