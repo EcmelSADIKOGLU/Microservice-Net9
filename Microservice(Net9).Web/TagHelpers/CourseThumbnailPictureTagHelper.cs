@@ -1,4 +1,4 @@
-﻿using Microservice_Net9_.Web.Options;
+using Microservice_Net9_.Web.Options;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Microservice_Net9_.Web.TagHelpers
@@ -10,7 +10,11 @@ namespace Microservice_Net9_.Web.TagHelpers
 
         public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            output.TagName = "Image";
+            output.TagName = "img";
+
+            // 2. Bu bir self-closing tag olduğu için (img etiketi kapanış tagi almaz) bunu belirtiyoruz.
+            // output.TagMode = TagMode.SelfClosing;
+            //TODO: Dont forget to set TagMode if needed
 
             var blankCourseThumbnailImagePath = "/images/blank_course.jpg";
 
@@ -26,7 +30,7 @@ namespace Microservice_Net9_.Web.TagHelpers
                 output.Attributes.Add("src", path);
             }
 
-                return base.ProcessAsync(context, output);
+            return base.ProcessAsync(context, output);
         }
     }
 }

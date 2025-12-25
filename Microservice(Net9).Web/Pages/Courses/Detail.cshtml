@@ -1,0 +1,59 @@
+@page "{id:guid}"
+@model Microservice_Net9_.Web.Pages.Courses.DetailModel
+@{
+}
+<div class="container mt-5">
+
+    <div class="row">
+
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <course-thumbnail-picture class="card-img-top img-fluid" alt="Kurs Resmi" src="@Model.CourseViewModel.ImageUrl"></course-thumbnail-picture>
+                <div class="card-body">
+                    <h2 class="mb-4">@Model.CourseViewModel.Name</h2>
+                    <h5 class="card-title">Kurs Açıklaması</h5>
+                    <p>@Model.CourseViewModel.Description</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+
+                    <h5 class="card-title">Kategori</h5>
+                    <p class="card-text">@Model.CourseViewModel.CategoryName</p>
+                    <hr>
+
+
+                    <h5 class="card-title">Fiyat</h5>
+                    <p class="card-text">
+                        <strong>@Model.CourseViewModel.Price.ToString("C")</strong>
+                    </p>
+                    <hr>
+
+
+                    <h5 class="card-title">Detaylar</h5>
+                    <p class="card-text">
+                        <small class="text-muted">Eğitmen: <strong>@Model.CourseViewModel.EducatorFullName</strong></small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Oluşturulma Tarihi: <strong>@Model.CourseViewModel.CreateTime</strong></small>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Puan: <strong>@Model.CourseViewModel.Rating</strong> | Süre: <strong>@Model.CourseViewModel.Duration</strong> saat</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-light text-center">
+                    <a asp-page="/basket/index" asp-page-handler="AddItemToBasket" asp-route-courseId="@Model.CourseViewModel.Id" class="btn btn-primary">Add To Basket</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
