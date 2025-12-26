@@ -14,8 +14,7 @@ public class CreateOrderViewModel
 
     [ValidateNever] public float? DiscountRate { get; set; }
 
-
-    public decimal TotalPrice { get; set; }
+    public decimal TotalPrice  => OrderItems.Sum(i => i.UnitPrice) * (decimal)(1 - (DiscountRate ?? 0));
 
     public static CreateOrderViewModel Empty => new()
     {

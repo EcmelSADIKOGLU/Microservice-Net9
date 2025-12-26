@@ -18,11 +18,11 @@ public record PaymentViewModel
 
     public static PaymentViewModel Example => new()
     {
-        Amount = 250,
+        Amount = 1,
         CardHolderName = "John Doe",
-        CardNumber = "4111411141114111",
+        CardNumber = "4111111111111111",
         Cvv = "123",
-        ExpiryDate = "12/27"
+        ExpiryDate = "11/28"
     };
 
 }
