@@ -5,5 +5,5 @@ public record PaymentDto(
     string CardHolderName,
     DateTime ExpirationDate,
     string Cvv,
-    decimal Amount
+    decimal Amount = 1
     );

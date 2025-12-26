@@ -2,6 +2,7 @@ using Microservice_Net9_.Basket.Api.Features.Basket.ApplyDiscountCoupon;
 using Microservice_Net9_.Discount.Api.Features.Discounts;
 using Microservice_Net9_.Web.Pages.Basket.Dtos;
 using Microservice_Net9_.Web.Pages.Basket.ViewModels;
+using Microservice_Net9_.Web.Pages.Order.ViewModels;
 using Microservice_Net9_.Web.Services.Refit;
 using System.Net;
 using System.Threading.Tasks;
@@ -23,6 +24,26 @@ namespace Microservice_Net9_.Web.Services
                 return ServiceResult.Error("An error occurred while clearing discount from basket");
             }
             return ServiceResult.Success();
+        }
+
+        public async Task<ServiceResult<(List<OrderItemViewModel> Items, float? DiscountRate)>> GetOrderItemViewModels()
+        {
+            var response = await basketRefitService.GetBasketAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                    return ServiceResult<(List<OrderItemViewModel>, float?)>.Success((new List<OrderItemViewModel>(), null));
+
+                logger.LogError(response.Error.Message);
+                return ServiceResult<(List<OrderItemViewModel>, float?)>.Error("An error occurred while getting the order items");
+            }
+
+            BasketDto basketDto = response.Content!;
+
+            List<OrderItemViewModel> orderItemViewModelList = basketDto.BasketItems.Select(i => new OrderItemViewModel(i.CourseId, i.CourseName, i.CoursePrice)).ToList();
+
+
+            return ServiceResult<(List<OrderItemViewModel>, float?)>.Success((orderItemViewModelList, basketDto.DiscountRate));
         }
 
         public async Task<ServiceResult> ApplyDiscountCouponAsync(DiscountDto discountDto)

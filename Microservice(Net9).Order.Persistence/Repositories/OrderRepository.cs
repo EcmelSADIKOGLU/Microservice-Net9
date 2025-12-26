@@ -12,6 +12,7 @@ namespace Microservice_Net9_.Order.Persistence.Repositories
         {
             return context.Orders
                 .Where(o => o.BuyerId == buyerId)
+                .Include(x => x.OrderItems)
                 .OrderByDescending(o => o.CreatedDate)
                 .ToListAsync();
         }
