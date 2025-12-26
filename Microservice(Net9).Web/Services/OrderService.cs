@@ -2,6 +2,7 @@ using Microservice_Net9_.Discount.Api.Features.Discounts;
 using Microservice_Net9_.Web.Pages.Order.Dtos;
 using Microservice_Net9_.Web.Pages.Order.ViewModels;
 using Microservice_Net9_.Web.Services.Refit;
+using Microservice_Net9_.Web.Services.ResponseDtos.Order;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
 
@@ -37,6 +38,36 @@ namespace Microservice_Net9_.Web.Services
             }
 
             return ServiceResult.Success();
+        }
+
+        public async Task<ServiceResult<List<OrderHistoryViewModel>>> GetOrderHistoryAsync()
+        {
+            var response = await orderRefitService.GetOrdersByBuyerIdAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                logger.LogError(response.Error.Message);
+                return ServiceResult<List<OrderHistoryViewModel>>.Error("An error occurred while retrieving order history");
+            }
+
+            var orderDtos = response.Content!.Orders;
+
+            var orderHistoryList = new List<OrderHistoryViewModel>();
+            foreach (var orderDto in orderDtos)
+            {
+                var viewModel = new OrderHistoryViewModel(
+                orderDto.OrderDate.ToString("dd-MM-yyyy"),
+                orderDto.Total.ToString("C")
+                );
+
+                foreach (var item in orderDto.OrderItems)
+                {
+                    viewModel.AddItem(item.ProductId, item.ProductName, item.UnitPrice);
+                }
+
+                orderHistoryList.Add(viewModel);
+            }
+
+            return ServiceResult<List<OrderHistoryViewModel>>.Success(orderHistoryList);
         }
     }
 }
